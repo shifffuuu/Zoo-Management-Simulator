@@ -11,7 +11,7 @@
 
 using namespace std;
 
-// Класс Animal — описание животного
+// РљР»Р°СЃСЃ Animal вЂ” РѕРїРёСЃР°РЅРёРµ Р¶РёРІРѕС‚РЅРѕРіРѕ
 class Animal {
 public:
     string name;
@@ -26,16 +26,16 @@ public:
     string parent2Name;
     bool isSick;
 
-    // Конструктор с минимумом параметров
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РјРёРЅРёРјСѓРјРѕРј РїР°СЂР°РјРµС‚СЂРѕРІ
     Animal(string n, int a, int w, Climate c, bool carn, Gender g, string s)
-        : name(n), age(a), weight(w), climate(c), isCarnivore(carn), happiness(70), gender(g), species(s), parent1Name("Неизвестно"), parent2Name("Неизвестно"), isSick(false) {
+        : name(n), age(a), weight(w), climate(c), isCarnivore(carn), happiness(70), gender(g), species(s), parent1Name("РќРµРёР·РІРµСЃС‚РЅРѕ"), parent2Name("РќРµРёР·РІРµСЃС‚РЅРѕ"), isSick(false) {
     }
-    // Конструктор с указанием родителей
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ СѓРєР°Р·Р°РЅРёРµРј СЂРѕРґРёС‚РµР»РµР№
     Animal(string n, int a, int w, Climate c, bool carn, Gender g, string s, string p1, string p2)
         : name(n), age(a), weight(w), climate(c), isCarnivore(carn), happiness(70), gender(g), species(s), parent1Name(p1), parent2Name(p2), isSick(false) {
     }
 
-    // Расчет стоимости животного
+    // Р Р°СЃС‡РµС‚ СЃС‚РѕРёРјРѕСЃС‚Рё Р¶РёРІРѕС‚РЅРѕРіРѕ
     int PriceAnimal() const {
         int basePrice = 100;
         int price = basePrice;
@@ -46,7 +46,7 @@ public:
         return max(price, 10);
     }
 
-    // Обновление уровня счастья в зависимости от кормления, количества вольера и болезни
+    // РћР±РЅРѕРІР»РµРЅРёРµ СѓСЂРѕРІРЅСЏ СЃС‡Р°СЃС‚СЊСЏ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РєРѕСЂРјР»РµРЅРёСЏ, РєРѕР»РёС‡РµСЃС‚РІР° РІРѕР»СЊРµСЂР° Рё Р±РѕР»РµР·РЅРё
     void updateHappiness(bool isFed, int enclosurePopulation) {
         if (isFed) {
             happiness += 10;
@@ -69,48 +69,48 @@ public:
         happiness = max(0, min(100, happiness));
     }
 
-    // Проверка, сбежит ли животное из-за низкого счастья
+    // РџСЂРѕРІРµСЂРєР°, СЃР±РµР¶РёС‚ Р»Рё Р¶РёРІРѕС‚РЅРѕРµ РёР·-Р·Р° РЅРёР·РєРѕРіРѕ СЃС‡Р°СЃС‚СЊСЏ
     bool checkEscape() const {
         if (happiness <= 20) {
-            return (rand() % 100) < 50; // 50% шанс сбежать при низком счастье
+            return (rand() % 100) < 50; // 50% С€Р°РЅСЃ СЃР±РµР¶Р°С‚СЊ РїСЂРё РЅРёР·РєРѕРј СЃС‡Р°СЃС‚СЊРµ
         }
         return false;
     }
-    // Переименование животного
+    // РџРµСЂРµРёРјРµРЅРѕРІР°РЅРёРµ Р¶РёРІРѕС‚РЅРѕРіРѕ
     void rename(const string& newName) {
         name = newName;
     }
-    // Проверка, умерет ли животное из-за старости
+    // РџСЂРѕРІРµСЂРєР°, СѓРјРµСЂРµС‚ Р»Рё Р¶РёРІРѕС‚РЅРѕРµ РёР·-Р·Р° СЃС‚Р°СЂРѕСЃС‚Рё
     bool checkOldAgeDeath() const {
         if (age > 50) {
-            return (rand() % 100) < (age - 50); // Вероятность смерти увеличивается с возрастом
+            return (rand() % 100) < (age - 50); // Р’РµСЂРѕСЏС‚РЅРѕСЃС‚СЊ СЃРјРµСЂС‚Рё СѓРІРµР»РёС‡РёРІР°РµС‚СЃСЏ СЃ РІРѕР·СЂР°СЃС‚РѕРј
         }
         return false;
     }
-    // Оператор для размножения животных — создает детеныша
+    // РћРїРµСЂР°С‚РѕСЂ РґР»СЏ СЂР°Р·РјРЅРѕР¶РµРЅРёСЏ Р¶РёРІРѕС‚РЅС‹С… вЂ” СЃРѕР·РґР°РµС‚ РґРµС‚РµРЅС‹С€Р°
     Animal operator+(const Animal& other) const {
-        // Проверки на возраст, пол, климат и тип питания
+        // РџСЂРѕРІРµСЂРєРё РЅР° РІРѕР·СЂР°СЃС‚, РїРѕР», РєР»РёРјР°С‚ Рё С‚РёРї РїРёС‚Р°РЅРёСЏ
         if (age < 5 || other.age < 5) {
-            throw runtime_error("Животные слишком молоды для размножения.");
+            throw runtime_error("Р–РёРІРѕС‚РЅС‹Рµ СЃР»РёС€РєРѕРј РјРѕР»РѕРґС‹ РґР»СЏ СЂР°Р·РјРЅРѕР¶РµРЅРёСЏ.");
         }
         if (gender == other.gender) {
-            throw runtime_error("Нельзя размножать однополых животных.");
+            throw runtime_error("РќРµР»СЊР·СЏ СЂР°Р·РјРЅРѕР¶Р°С‚СЊ РѕРґРЅРѕРїРѕР»С‹С… Р¶РёРІРѕС‚РЅС‹С….");
         }
         if (climate != other.climate) {
-            throw runtime_error("Нельзя размножать животных из разных климатических зон.");
+            throw runtime_error("РќРµР»СЊР·СЏ СЂР°Р·РјРЅРѕР¶Р°С‚СЊ Р¶РёРІРѕС‚РЅС‹С… РёР· СЂР°Р·РЅС‹С… РєР»РёРјР°С‚РёС‡РµСЃРєРёС… Р·РѕРЅ.");
         }
         if (isCarnivore != other.isCarnivore) {
-            throw runtime_error("Нельзя размножать хищников с травоядными.");
+            throw runtime_error("РќРµР»СЊР·СЏ СЂР°Р·РјРЅРѕР¶Р°С‚СЊ С…РёС‰РЅРёРєРѕРІ СЃ С‚СЂР°РІРѕСЏРґРЅС‹РјРё.");
         }
-        // Название малыша и параметры
-        string babyName = "Детеныш " + species + "-" + other.species;
+        // РќР°Р·РІР°РЅРёРµ РјР°Р»С‹С€Р° Рё РїР°СЂР°РјРµС‚СЂС‹
+        string babyName = "Р”РµС‚РµРЅС‹С€ " + species + "-" + other.species;
         int babyAge = 0;
         int babyWeight = (weight + other.weight) / 4;
         Gender babyGender = (rand() % 2 == 0) ? Male : Female;
         string parent1 = name;
         string parent2 = other.name;
 
-        // Создаем гибридное название вида
+        // РЎРѕР·РґР°РµРј РіРёР±СЂРёРґРЅРѕРµ РЅР°Р·РІР°РЅРёРµ РІРёРґР°
         string hybridSpecies;
         if (rand() % 2 == 0) {
             hybridSpecies = species.substr(0, species.length() / 2) + other.species.substr(other.species.length() / 2);
@@ -123,7 +123,7 @@ public:
     }
 };
 
-// Класс Aviary — описание вольера
+// РљР»Р°СЃСЃ Aviary вЂ” РѕРїРёСЃР°РЅРёРµ РІРѕР»СЊРµСЂР°
 class Aviary {
 public:
     Animal::Climate climat;
@@ -135,13 +135,13 @@ public:
     bool isClean;
     bool isFed;
 
-    // Конструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     Aviary(Animal::Climate c, int cap)
         : climat(c), vmestimost(cap), level(1), sickAnimalsCount(0), isClean(true), isFed(false) {
-        daytrati = calculateDailyCost(); // расходы в день 
+        daytrati = calculateDailyCost(); // СЂР°СЃС…РѕРґС‹ РІ РґРµРЅСЊ 
     }
 
-    // Проверка, можно ли добавить животное в вольер (по климату и типу питания)
+    // РџСЂРѕРІРµСЂРєР°, РјРѕР¶РЅРѕ Р»Рё РґРѕР±Р°РІРёС‚СЊ Р¶РёРІРѕС‚РЅРѕРµ РІ РІРѕР»СЊРµСЂ (РїРѕ РєР»РёРјР°С‚Сѓ Рё С‚РёРїСѓ РїРёС‚Р°РЅРёСЏ)
     bool volerskan(const Animal& animal) {
         if (animals.size() >= vmestimost) return false;
         if (animal.climate != climat) return false;
@@ -151,20 +151,20 @@ public:
         return true;
     }
 
-    // Добавление животного в вольер
+    // Р”РѕР±Р°РІР»РµРЅРёРµ Р¶РёРІРѕС‚РЅРѕРіРѕ РІ РІРѕР»СЊРµСЂ
     void volerskanback(const Animal& animal) {
         if (volerskan(animal)) {
             animals.push_back(animal);
             if (animal.isSick) {
                 sickAnimalsCount++;
-                cout << "Уведомление: Животное " << animal.name << " добавлено в вольер больным!\n";
+                cout << "РЈРІРµРґРѕРјР»РµРЅРёРµ: Р–РёРІРѕС‚РЅРѕРµ " << animal.name << " РґРѕР±Р°РІР»РµРЅРѕ РІ РІРѕР»СЊРµСЂ Р±РѕР»СЊРЅС‹Рј!\n";
             }
         }
         else {
-            cout << "Невозможно добавить животное в вольер (неподходящие условия или нет места).\n";
+            cout << "РќРµРІРѕР·РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ Р¶РёРІРѕС‚РЅРѕРµ РІ РІРѕР»СЊРµСЂ (РЅРµРїРѕРґС…РѕРґСЏС‰РёРµ СѓСЃР»РѕРІРёСЏ РёР»Рё РЅРµС‚ РјРµСЃС‚Р°).\n";
         }
     }
-    // Удаление животного по имени
+    // РЈРґР°Р»РµРЅРёРµ Р¶РёРІРѕС‚РЅРѕРіРѕ РїРѕ РёРјРµРЅРё
     void removeAnimal(const string& name) {
         for (auto it = animals.begin(); it != animals.end(); ++it) {
             if (it->name == name) {
@@ -177,7 +177,7 @@ public:
         }
     }
 
-    // Расчет стоимости вольера
+    // Р Р°СЃС‡РµС‚ СЃС‚РѕРёРјРѕСЃС‚Рё РІРѕР»СЊРµСЂР°
     int calculateCost() const {
         int baseCost = 100;
         int cost = baseCost;
@@ -185,7 +185,7 @@ public:
         cost += static_cast<int>(climat) * 50;
         return max(cost, 150);
     }
-    // Расчет ежедневных расходов на вольер
+    // Р Р°СЃС‡РµС‚ РµР¶РµРґРЅРµРІРЅС‹С… СЂР°СЃС…РѕРґРѕРІ РЅР° РІРѕР»СЊРµСЂ
     int calculateDailyCost() const {
         int baseDailyCost = 10;
         int dailyCost = baseDailyCost;
@@ -194,13 +194,13 @@ public:
         return max(dailyCost, 10);
     }
 
-    // Обновление состояния вольера и животных (инфекции, смерть, счастье)
+    // РћР±РЅРѕРІР»РµРЅРёРµ СЃРѕСЃС‚РѕСЏРЅРёСЏ РІРѕР»СЊРµСЂР° Рё Р¶РёРІРѕС‚РЅС‹С… (РёРЅС„РµРєС†РёРё, СЃРјРµСЂС‚СЊ, СЃС‡Р°СЃС‚СЊРµ)
     vector<string> updateAviaryState() {
         vector<string> notifications;
         int initialSickCount = sickAnimalsCount;
         int totalAnimals = animals.size();
 
-        // Распространение инфекции
+        // Р Р°СЃРїСЂРѕСЃС‚СЂР°РЅРµРЅРёРµ РёРЅС„РµРєС†РёРё
         if (initialSickCount > 0 && totalAnimals > 0) {
             vector<int> susceptibleIndices;
             for (int i = 0; i < animals.size(); ++i) {
@@ -211,7 +211,7 @@ public:
                 }
             }
 
-            // Перемешивание и заражение части животных
+            // РџРµСЂРµРјРµС€РёРІР°РЅРёРµ Рё Р·Р°СЂР°Р¶РµРЅРёРµ С‡Р°СЃС‚Рё Р¶РёРІРѕС‚РЅС‹С…
             random_device rd;
             mt19937 g(rd());
             shuffle(susceptibleIndices.begin(), susceptibleIndices.end(), g);
@@ -225,11 +225,11 @@ public:
                 it->isSick = true;
                 sickAnimalsCount++;
                 actuallyInfected++;
-                notifications.push_back("Животное \"" + it->name + "\" заразилось тиаравирусом!");
+                notifications.push_back("Р–РёРІРѕС‚РЅРѕРµ \"" + it->name + "\" Р·Р°СЂР°Р·РёР»РѕСЃСЊ С‚РёР°СЂР°РІРёСЂСѓСЃРѕРј!");
             }
         }
 
-        // Умершие от болезни
+        // РЈРјРµСЂС€РёРµ РѕС‚ Р±РѕР»РµР·РЅРё
         vector<string> diedFromSickness;
         if (totalAnimals > 0 && (double)sickAnimalsCount / totalAnimals > 0.5) {
             int deathsToCause = sickAnimalsCount / 2;
@@ -247,13 +247,13 @@ public:
                     int randomIndex = sickIndices[rand() % sickIndices.size()];
                     auto it = animals.begin();
                     advance(it, randomIndex);
-                    diedFromSickness.push_back(it->name + " (от тиаравируса)");
+                    diedFromSickness.push_back(it->name + " (РѕС‚ С‚РёР°СЂР°РІРёСЂСѓСЃР°)");
                     it = animals.erase(it);
                     sickAnimalsCount--;
                 }
             }
             if (!diedFromSickness.empty()) {
-                notifications.push_back("В вольере климата \"" + getClimateName() + "\" умерло от болезни: " + to_string(diedFromSickness.size()) + " животных.");
+                notifications.push_back("Р’ РІРѕР»СЊРµСЂРµ РєР»РёРјР°С‚Р° \"" + getClimateName() + "\" СѓРјРµСЂР»Рѕ РѕС‚ Р±РѕР»РµР·РЅРё: " + to_string(diedFromSickness.size()) + " Р¶РёРІРѕС‚РЅС‹С….");
             }
         }
 
@@ -263,7 +263,7 @@ public:
         return notifications;
     }
 
-    // Вылечить до maxToHeal животных
+    // Р’С‹Р»РµС‡РёС‚СЊ РґРѕ maxToHeal Р¶РёРІРѕС‚РЅС‹С…
     int healAnimals(int maxToHeal) {
         int healedCount = 0;
         for (auto& animal : animals) {
@@ -271,40 +271,40 @@ public:
                 animal.isSick = false;
                 sickAnimalsCount--;
                 healedCount++;
-                cout << "Животное \"" << animal.name << "\" вылечено!\n";
+                cout << "Р–РёРІРѕС‚РЅРѕРµ \"" << animal.name << "\" РІС‹Р»РµС‡РµРЅРѕ!\n";
             }
         }
         return healedCount;
     }
 
-    // Уборка вольера
+    // РЈР±РѕСЂРєР° РІРѕР»СЊРµСЂР°
     void cleanAviary() {
         isClean = true;
         for (auto& animal : animals) {
             animal.happiness = min(100, animal.happiness + 10);
         }
-        cout << "Вольер с климатом \"" << getClimateName() << "\" очищен.\n";
+        cout << "Р’РѕР»СЊРµСЂ СЃ РєР»РёРјР°С‚РѕРј \"" << getClimateName() << "\" РѕС‡РёС‰РµРЅ.\n";
     }
 
-    // Покормить вольер, если есть еды
+    // РџРѕРєРѕСЂРјРёС‚СЊ РІРѕР»СЊРµСЂ, РµСЃР»Рё РµСЃС‚СЊ РµРґС‹
     bool feedAviary(int& availableFood) {
         int requiredFood = animals.size();
         if (availableFood >= requiredFood) {
             availableFood -= requiredFood;
             isFed = true;
-            cout << "Вольер с климатом \"" << getClimateName() << "\" накормлен.\n";
+            cout << "Р’РѕР»СЊРµСЂ СЃ РєР»РёРјР°С‚РѕРј \"" << getClimateName() << "\" РЅР°РєРѕСЂРјР»РµРЅ.\n";
             return true;
         }
         else {
-            cout << "Недостаточно еды для кормления вольера с климатом \"" << getClimateName() << "\".\n";
+            cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РµРґС‹ РґР»СЏ РєРѕСЂРјР»РµРЅРёСЏ РІРѕР»СЊРµСЂР° СЃ РєР»РёРјР°С‚РѕРј \"" << getClimateName() << "\".\n";
             return false;
         }
     }
 
-    // Улучшение вольера — увеличение вместимости и снижение ежедневных расходов
+    // РЈР»СѓС‡С€РµРЅРёРµ РІРѕР»СЊРµСЂР° вЂ” СѓРІРµР»РёС‡РµРЅРёРµ РІРјРµСЃС‚РёРјРѕСЃС‚Рё Рё СЃРЅРёР¶РµРЅРёРµ РµР¶РµРґРЅРµРІРЅС‹С… СЂР°СЃС…РѕРґРѕРІ
     bool upgrade(int baseUpgradeCost) {
         if (level >= 3) {
-            cout << "Достигнут максимальный уровень улучшения!\n";
+            cout << "Р”РѕСЃС‚РёРіРЅСѓС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ СѓР»СѓС‡С€РµРЅРёСЏ!\n";
             return false;
         }
         vmestimost *= 2;
@@ -313,19 +313,19 @@ public:
         return true;
     }
 
-    // Получение названия климатической зоны
+    // РџРѕР»СѓС‡РµРЅРёРµ РЅР°Р·РІР°РЅРёСЏ РєР»РёРјР°С‚РёС‡РµСЃРєРѕР№ Р·РѕРЅС‹
     string getClimateName() const {
         switch (climat) {
-        case Animal::Desert: return "Пустыня";
-        case Animal::Forest: return "Лес";
-        case Animal::Artic: return "Арктика";
-        case Animal::Ocean: return "Океан";
-        default: return "Неизвестный";
+        case Animal::Desert: return "РџСѓСЃС‚С‹РЅСЏ";
+        case Animal::Forest: return "Р›РµСЃ";
+        case Animal::Artic: return "РђСЂРєС‚РёРєР°";
+        case Animal::Ocean: return "РћРєРµР°РЅ";
+        default: return "РќРµРёР·РІРµСЃС‚РЅС‹Р№";
         }
     }
 };
 
-// описание работника
+// РѕРїРёСЃР°РЅРёРµ СЂР°Р±РѕС‚РЅРёРєР°
 class Employee {
 public:
     string name;
@@ -341,15 +341,15 @@ public:
 
     string getPositionName() const {
         switch (position) {
-        case Director: return "Директор";
-        case Cleaner: return "Уборщик";
-        case Veterinarian: return "Ветеринар";
-        case Feeder: return "Кормилец";
-        default: return "Неизвестно";
+        case Director: return "Р”РёСЂРµРєС‚РѕСЂ";
+        case Cleaner: return "РЈР±РѕСЂС‰РёРє";
+        case Veterinarian: return "Р’РµС‚РµСЂРёРЅР°СЂ";
+        case Feeder: return "РљРѕСЂРјРёР»РµС†";
+        default: return "РќРµРёР·РІРµСЃС‚РЅРѕ";
         }
     }
 };
-//Основной класс зоопарка
+//РћСЃРЅРѕРІРЅРѕР№ РєР»Р°СЃСЃ Р·РѕРѕРїР°СЂРєР°
 class Zoo {
 public:
     string name;
@@ -362,39 +362,39 @@ public:
         : name(n), money(initialMoney), food(0), popularity(50), day(1) {
     }
 
-    // Переход к следующему дню
+    // РџРµСЂРµС…РѕРґ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ РґРЅСЋ
     void nextDay() {
-        cout << "\n--- День " << day << " ---\n";
-        cout << "Бюджет прошлого дня: " << money << " монет\n";
+        cout << "\n--- Р”РµРЅСЊ " << day << " ---\n";
+        cout << "Р‘СЋРґР¶РµС‚ РїСЂРѕС€Р»РѕРіРѕ РґРЅСЏ: " << money << " РјРѕРЅРµС‚\n";
 
-        // Расчет дохода
+        // Р Р°СЃС‡РµС‚ РґРѕС…РѕРґР°
         int visitors = max(0, 2 * popularity);
         int totalAnimals = getTotalAnimals();
         int income = visitors * totalAnimals;
 
-        cout << "Посетители сегодня: " << visitors << "\n";
-        cout << "Доход за день: +" << income << " монет\n";
+        cout << "РџРѕСЃРµС‚РёС‚РµР»Рё СЃРµРіРѕРґРЅСЏ: " << visitors << "\n";
+        cout << "Р”РѕС…РѕРґ Р·Р° РґРµРЅСЊ: +" << income << " РјРѕРЅРµС‚\n";
 
-        // Обновление бюджета
+        // РћР±РЅРѕРІР»РµРЅРёРµ Р±СЋРґР¶РµС‚Р°
         money += income;
 
-        // Выплаты зарплаты
+        // Р’С‹РїР»Р°С‚С‹ Р·Р°СЂРїР»Р°С‚С‹
         for (auto& emp : employees) {
             money -= emp.salary;
         }
 
-        // Расходы на содержание вольеров
+        // Р Р°СЃС…РѕРґС‹ РЅР° СЃРѕРґРµСЂР¶Р°РЅРёРµ РІРѕР»СЊРµСЂРѕРІ
         for (auto& enc : enclosures) {
             money -= enc.daytrati;
         }
 
-        // Обработка смертей из-за старости
+        // РћР±СЂР°Р±РѕС‚РєР° СЃРјРµСЂС‚РµР№ РёР·-Р·Р° СЃС‚Р°СЂРѕСЃС‚Рё
         vector<string> deadAnimals;
         for (auto& enc : enclosures) {
             for (auto it = enc.animals.begin(); it != enc.animals.end(); ) {
                 it->age++;
                 if (it->checkOldAgeDeath()) {
-                    deadAnimals.push_back(it->name + " (от старости)");
+                    deadAnimals.push_back(it->name + " (РѕС‚ СЃС‚Р°СЂРѕСЃС‚Рё)");
                     if (it->isSick) {
                         enc.sickAnimalsCount--;
                     }
@@ -406,14 +406,14 @@ public:
             }
         }
 
-        // Обработка голода и болезней
+        // РћР±СЂР°Р±РѕС‚РєР° РіРѕР»РѕРґР° Рё Р±РѕР»РµР·РЅРµР№
         vector<string> aviaryNotifications;
         for (auto& enc : enclosures) {
             if (!enc.isFed && enc.animals.size() > 0) {
                 int deficit = enc.animals.size();
                 for (auto it = enc.animals.begin(); it != enc.animals.end() && deficit > 0;) {
                     if (rand() % 2 == 0) {
-                        deadAnimals.push_back(it->name + " (от голода)");
+                        deadAnimals.push_back(it->name + " (РѕС‚ РіРѕР»РѕРґР°)");
                         if (it->isSick) {
                             enc.sickAnimalsCount--;
                         }
@@ -425,24 +425,24 @@ public:
                     }
                 }
                 if (enc.animals.empty()) {
-                    aviaryNotifications.push_back("В вольере климата \"" + enc.getClimateName() + "\" все животные умерли от голода.");
+                    aviaryNotifications.push_back("Р’ РІРѕР»СЊРµСЂРµ РєР»РёРјР°С‚Р° \"" + enc.getClimateName() + "\" РІСЃРµ Р¶РёРІРѕС‚РЅС‹Рµ СѓРјРµСЂР»Рё РѕС‚ РіРѕР»РѕРґР°.");
                 }
                 else if (deficit > 0) {
-                    aviaryNotifications.push_back("В вольере климата \"" + enc.getClimateName() + "\" умерло " + to_string(deficit) + " животных от голода.");
+                    aviaryNotifications.push_back("Р’ РІРѕР»СЊРµСЂРµ РєР»РёРјР°С‚Р° \"" + enc.getClimateName() + "\" СѓРјРµСЂР»Рѕ " + to_string(deficit) + " Р¶РёРІРѕС‚РЅС‹С… РѕС‚ РіРѕР»РѕРґР°.");
                 }
             }
 
-            // Обновление счастья животных
+            // РћР±РЅРѕРІР»РµРЅРёРµ СЃС‡Р°СЃС‚СЊСЏ Р¶РёРІРѕС‚РЅС‹С…
             int population = enc.animals.size();
             for (auto& animal : enc.animals) {
                 animal.updateHappiness(enc.isFed, population);
             }
 
-            // Обработка инфекции и сбежавших
+            // РћР±СЂР°Р±РѕС‚РєР° РёРЅС„РµРєС†РёРё Рё СЃР±РµР¶Р°РІС€РёС…
             vector<string> currentAviaryNotifications = enc.updateAviaryState();
             aviaryNotifications.insert(aviaryNotifications.end(), currentAviaryNotifications.begin(), currentAviaryNotifications.end());
 
-            // Животные сбегают при низком счастье
+            // Р–РёРІРѕС‚РЅС‹Рµ СЃР±РµРіР°СЋС‚ РїСЂРё РЅРёР·РєРѕРј СЃС‡Р°СЃС‚СЊРµ
             vector<string> escapedAnimalsInAviary;
             for (auto it = enc.animals.begin(); it != enc.animals.end(); ) {
                 if (it->checkEscape()) {
@@ -456,43 +456,43 @@ public:
                     ++it;
                 }
             }
-            // Уведомления о побегах
+            // РЈРІРµРґРѕРјР»РµРЅРёСЏ Рѕ РїРѕР±РµРіР°С…
             if (!escapedAnimalsInAviary.empty()) {
                 for (const string& name : escapedAnimalsInAviary) {
-                    aviaryNotifications.push_back("Животное \"" + name + "\" сбежало из вольера климата \"" + enc.getClimateName() + "\" из-за низкого уровня счастья!");
+                    aviaryNotifications.push_back("Р–РёРІРѕС‚РЅРѕРµ \"" + name + "\" СЃР±РµР¶Р°Р»Рѕ РёР· РІРѕР»СЊРµСЂР° РєР»РёРјР°С‚Р° \"" + enc.getClimateName() + "\" РёР·-Р·Р° РЅРёР·РєРѕРіРѕ СѓСЂРѕРІРЅСЏ СЃС‡Р°СЃС‚СЊСЏ!");
                 }
             }
         }
 
-        // Популярность падает при большом числе больных
+        // РџРѕРїСѓР»СЏСЂРЅРѕСЃС‚СЊ РїР°РґР°РµС‚ РїСЂРё Р±РѕР»СЊС€РѕРј С‡РёСЃР»Рµ Р±РѕР»СЊРЅС‹С…
         int totalSickAnimals = 0;
         for (auto& enc : enclosures) {
             totalSickAnimals += enc.sickAnimalsCount;
         }
         popularity = max(0, popularity - totalSickAnimals);
 
-        // Варьирование популярности
+        // Р’Р°СЂСЊРёСЂРѕРІР°РЅРёРµ РїРѕРїСѓР»СЏСЂРЅРѕСЃС‚Рё
         int fluctuation = popularity * 0.1;
         int change = (rand() % (2 * fluctuation + 1)) - fluctuation;
         popularity += change;
         popularity = max(popularity, 0);
 
-        // Выполнение ежедневных задач
+        // Р’С‹РїРѕР»РЅРµРЅРёРµ РµР¶РµРґРЅРµРІРЅС‹С… Р·Р°РґР°С‡
         performDailyWork();
 
-        // Инфекция случайного животного
+        // РРЅС„РµРєС†РёСЏ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ Р¶РёРІРѕС‚РЅРѕРіРѕ
         infectRandomAnimal();
 
-        cout << "Бюджет текущего дня: " << money << " монет\n";
+        cout << "Р‘СЋРґР¶РµС‚ С‚РµРєСѓС‰РµРіРѕ РґРЅСЏ: " << money << " РјРѕРЅРµС‚\n";
 
         if (!deadAnimals.empty()) {
-            cout << "\n--- Уведомления о смерти ---\n";
+            cout << "\n--- РЈРІРµРґРѕРјР»РµРЅРёСЏ Рѕ СЃРјРµСЂС‚Рё ---\n";
             for (const string& name : deadAnimals) {
-                cout << "Животное \"" << name << "\" умерло.\n";
+                cout << "Р–РёРІРѕС‚РЅРѕРµ \"" << name << "\" СѓРјРµСЂР»Рѕ.\n";
             }
         }
         if (!aviaryNotifications.empty()) {
-            cout << "\n--- Уведомления о вольерах ---\n";
+            cout << "\n--- РЈРІРµРґРѕРјР»РµРЅРёСЏ Рѕ РІРѕР»СЊРµСЂР°С… ---\n";
             for (const string& note : aviaryNotifications) {
                 cout << note << "\n";
             }
@@ -501,16 +501,16 @@ public:
         day++;
     }
 
-    // Возвращает общее число животных
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±С‰РµРµ С‡РёСЃР»Рѕ Р¶РёРІРѕС‚РЅС‹С…
     int getTotalAnimals() {
         int total = 0;
         for (auto& enc : enclosures) total += enc.animals.size();
         return total;
     }
 
-    // Основные действия за день — лечение, кормление, уборка
+    // РћСЃРЅРѕРІРЅС‹Рµ РґРµР№СЃС‚РІРёСЏ Р·Р° РґРµРЅСЊ вЂ” Р»РµС‡РµРЅРёРµ, РєРѕСЂРјР»РµРЅРёРµ, СѓР±РѕСЂРєР°
     void performDailyWork() {
-        // Ветеринары лечат животных
+        // Р’РµС‚РµСЂРёРЅР°СЂС‹ Р»РµС‡Р°С‚ Р¶РёРІРѕС‚РЅС‹С…
         for (auto& emp : employees) {
             if (emp.position == Employee::Veterinarian && !emp.assignedAnimals.empty()) {
                 int healedCount = 0;
@@ -531,7 +531,7 @@ public:
             }
         }
 
-        // Кормильцы кормят вольеры
+        // РљРѕСЂРјРёР»СЊС†С‹ РєРѕСЂРјСЏС‚ РІРѕР»СЊРµСЂС‹
         for (auto& emp : employees) {
             if (emp.position == Employee::Feeder) {
                 for (Aviary* enc : emp.assignedAviaries) {
@@ -540,7 +540,7 @@ public:
             }
         }
 
-        // Уборщики чистят вольеры
+        // РЈР±РѕСЂС‰РёРєРё С‡РёСЃС‚СЏС‚ РІРѕР»СЊРµСЂС‹
         for (auto& emp : employees) {
             if (emp.position == Employee::Cleaner) {
                 for (Aviary* enc : emp.assignedAviaries) {
@@ -550,7 +550,7 @@ public:
         }
     }
 
-    // Инфицировать случайное животное
+    // РРЅС„РёС†РёСЂРѕРІР°С‚СЊ СЃР»СѓС‡Р°Р№РЅРѕРµ Р¶РёРІРѕС‚РЅРѕРµ
     void infectRandomAnimal() {
         vector<Animal*> allAnimals;
         for (auto& enc : enclosures) {
@@ -567,7 +567,7 @@ public:
                 for (auto& animal : enc.animals) {
                     if (&animal == allAnimals[index]) {
                         enc.sickAnimalsCount++;
-                        cout << "Уведомление: Животное \"" << animal.name << "\" заболело тиаравирусом!\n";
+                        cout << "РЈРІРµРґРѕРјР»РµРЅРёРµ: Р–РёРІРѕС‚РЅРѕРµ \"" << animal.name << "\" Р·Р°Р±РѕР»РµР»Рѕ С‚РёР°СЂР°РІРёСЂСѓСЃРѕРј!\n";
                         break;
                     }
                 }
@@ -576,13 +576,13 @@ public:
     }
 };
 
-// Массивы видов для каждого климата (чтобы рандомно выбирать виды)
-const string ARCTIC_SPECIES[] = { "Снеговик", "Ледяной дракон", "Морж бронинсец", "Летающий пингвин" };
-const string DESERT_SPECIES[] = { "Пустынный червь", "Монстр кактус", "Мумия", "Пустынная змея", "Ящер" };
-const string OCEAN_SPECIES[] = { "Кракен", "Мегалодон", "Годзилла", "Морской демон", "Мега кит" };
-const string FOREST_SPECIES[] = { "Оборотень", "Слоновый медведь", "Заяц прыгун", "Чужой", "Клыкастый тигр" };
+// РњР°СЃСЃРёРІС‹ РІРёРґРѕРІ РґР»СЏ РєР°Р¶РґРѕРіРѕ РєР»РёРјР°С‚Р° (С‡С‚РѕР±С‹ СЂР°РЅРґРѕРјРЅРѕ РІС‹Р±РёСЂР°С‚СЊ РІРёРґС‹)
+const string ARCTIC_SPECIES[] = { "РЎРЅРµРіРѕРІРёРє", "Р›РµРґСЏРЅРѕР№ РґСЂР°РєРѕРЅ", "РњРѕСЂР¶ Р±СЂРѕРЅРёРЅСЃРµС†", "Р›РµС‚Р°СЋС‰РёР№ РїРёРЅРіРІРёРЅ" };
+const string DESERT_SPECIES[] = { "РџСѓСЃС‚С‹РЅРЅС‹Р№ С‡РµСЂРІСЊ", "РњРѕРЅСЃС‚СЂ РєР°РєС‚СѓСЃ", "РњСѓРјРёСЏ", "РџСѓСЃС‚С‹РЅРЅР°СЏ Р·РјРµСЏ", "РЇС‰РµСЂ" };
+const string OCEAN_SPECIES[] = { "РљСЂР°РєРµРЅ", "РњРµРіР°Р»РѕРґРѕРЅ", "Р“РѕРґР·РёР»Р»Р°", "РњРѕСЂСЃРєРѕР№ РґРµРјРѕРЅ", "РњРµРіР° РєРёС‚" };
+const string FOREST_SPECIES[] = { "РћР±РѕСЂРѕС‚РµРЅСЊ", "РЎР»РѕРЅРѕРІС‹Р№ РјРµРґРІРµРґСЊ", "Р—Р°СЏС† РїСЂС‹РіСѓРЅ", "Р§СѓР¶РѕР№", "РљР»С‹РєР°СЃС‚С‹Р№ С‚РёРіСЂ" };
 
-// Функция для получения рандомного вида животного по климату
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЂР°РЅРґРѕРјРЅРѕРіРѕ РІРёРґР° Р¶РёРІРѕС‚РЅРѕРіРѕ РїРѕ РєР»РёРјР°С‚Сѓ
 string getRandomSpecies(Animal::Climate climate) {
     switch (climate) {
     case Animal::Desert:
@@ -594,11 +594,11 @@ string getRandomSpecies(Animal::Climate climate) {
     case Animal::Ocean:
         return OCEAN_SPECIES[rand() % (sizeof(OCEAN_SPECIES) / sizeof(OCEAN_SPECIES[0]))];
     default:
-        return "Неизвестный вид";
+        return "РќРµРёР·РІРµСЃС‚РЅС‹Р№ РІРёРґ";
     }
 }
 
-// Функция для получения массива видов по климату
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РјР°СЃСЃРёРІР° РІРёРґРѕРІ РїРѕ РєР»РёРјР°С‚Сѓ
 vector<string> getSpeciesByClimate(Animal::Climate climate) {
     switch (climate) {
     case Animal::Desert:
@@ -614,7 +614,7 @@ vector<string> getSpeciesByClimate(Animal::Climate climate) {
     }
 }
 
-// Генерация случайного животного
+// Р“РµРЅРµСЂР°С†РёСЏ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ Р¶РёРІРѕС‚РЅРѕРіРѕ
 Animal generateRandomAnimal() {
     Animal::Climate climates[] = { Animal::Desert, Animal::Forest, Animal::Artic, Animal::Ocean };
 
@@ -628,7 +628,7 @@ Animal generateRandomAnimal() {
     return Animal(randomSpecies, randomAge, randomWeight, randomClimate, isCarnivore, randomGender, randomSpecies);
 }
 
-// Вспомогательная функция для получения целого числа с проверкой
+// Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С†РµР»РѕРіРѕ С‡РёСЃР»Р° СЃ РїСЂРѕРІРµСЂРєРѕР№
 int getIntegerInput(const string& prompt) {
     int value;
     while (true) {
@@ -637,7 +637,7 @@ int getIntegerInput(const string& prompt) {
         if (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Некорректный ввод. Попробуйте снова.\n";
+            cout << "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ. РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n";
         }
         else {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -646,61 +646,61 @@ int getIntegerInput(const string& prompt) {
     }
 }
 
-// Управление работниками — нанять, уволить, просмотреть, назначить
+// РЈРїСЂР°РІР»РµРЅРёРµ СЂР°Р±РѕС‚РЅРёРєР°РјРё вЂ” РЅР°РЅСЏС‚СЊ, СѓРІРѕР»РёС‚СЊ, РїСЂРѕСЃРјРѕС‚СЂРµС‚СЊ, РЅР°Р·РЅР°С‡РёС‚СЊ
 void manageEmployees(Zoo& zoo) {
-    cout << "\n--- Управление работниками ---\n";
-    cout << "1. Нанять сотрудника\n";
-    cout << "2. Уволить сотрудника\n";
-    cout << "3. Просмотреть список\n";
-    cout << "4. Назначить работников\n";
-    cout << "0. Назад\n";
+    cout << "\n--- РЈРїСЂР°РІР»РµРЅРёРµ СЂР°Р±РѕС‚РЅРёРєР°РјРё ---\n";
+    cout << "1. РќР°РЅСЏС‚СЊ СЃРѕС‚СЂСѓРґРЅРёРєР°\n";
+    cout << "2. РЈРІРѕР»РёС‚СЊ СЃРѕС‚СЂСѓРґРЅРёРєР°\n";
+    cout << "3. РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ СЃРїРёСЃРѕРє\n";
+    cout << "4. РќР°Р·РЅР°С‡РёС‚СЊ СЂР°Р±РѕС‚РЅРёРєРѕРІ\n";
+    cout << "0. РќР°Р·Р°Рґ\n";
 
-    int choice = getIntegerInput("Выберите действие: ");
+    int choice = getIntegerInput("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ");
     switch (choice) {
     case 1: {
-        cout << "\nНаем сотрудника:\n";
+        cout << "\nРќР°РµРј СЃРѕС‚СЂСѓРґРЅРёРєР°:\n";
         string name;
-        cout << "Введите имя: ";
+        cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ: ";
         getline(cin, name);
 
-        cout << "1. Уборщик\n2. Ветеринар\n3. Кормилец\n";
-        int posChoice = getIntegerInput("Выберите должность: ");
+        cout << "1. РЈР±РѕСЂС‰РёРє\n2. Р’РµС‚РµСЂРёРЅР°СЂ\n3. РљРѕСЂРјРёР»РµС†\n";
+        int posChoice = getIntegerInput("Р’С‹Р±РµСЂРёС‚Рµ РґРѕР»Р¶РЅРѕСЃС‚СЊ: ");
         Employee::Position position;
         int salary, maxCapacity;
 
         switch (posChoice) {
         case 1:
             position = Employee::Cleaner;
-            salary = 100; // Уборщик обслуживает 1 вольер
+            salary = 100; // РЈР±РѕСЂС‰РёРє РѕР±СЃР»СѓР¶РёРІР°РµС‚ 1 РІРѕР»СЊРµСЂ
             maxCapacity = 1;
             break;
         case 2:
             position = Employee::Veterinarian;
-            salary = 300; // Ветеринар может обслуживать 20 животных
+            salary = 300; // Р’РµС‚РµСЂРёРЅР°СЂ РјРѕР¶РµС‚ РѕР±СЃР»СѓР¶РёРІР°С‚СЊ 20 Р¶РёРІРѕС‚РЅС‹С…
             maxCapacity = 20;
             break;
         case 3:
             position = Employee::Feeder;
-            salary = 150; // Кормилец может обслуживать 2 вольера
+            salary = 150; // РљРѕСЂРјРёР»РµС† РјРѕР¶РµС‚ РѕР±СЃР»СѓР¶РёРІР°С‚СЊ 2 РІРѕР»СЊРµСЂР°
             maxCapacity = 2;
             break;
         default:
-            cout << "Неверный выбор!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ!\n";
             return;
         }
 
         if (zoo.money >= salary) {
             zoo.employees.emplace_back(name, position, salary, maxCapacity);
             zoo.money -= salary;
-            cout << "Сотрудник нанят!\n";
+            cout << "РЎРѕС‚СЂСѓРґРЅРёРє РЅР°РЅСЏС‚!\n";
         }
         else {
-            cout << "Недостаточно средств!\n";
+            cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ!\n";
         }
         break;
     }
     case 2: {
-        cout << "\nУвольнение сотрудника:\n";
+        cout << "\nРЈРІРѕР»СЊРЅРµРЅРёРµ СЃРѕС‚СЂСѓРґРЅРёРєР°:\n";
         int index = 1;
         vector<Employee*> fireableEmployees;
         for (auto& emp : zoo.employees) {
@@ -712,13 +712,13 @@ void manageEmployees(Zoo& zoo) {
         }
 
         if (fireableEmployees.empty()) {
-            cout << "Нет сотрудников для увольнения (кроме директора).\n";
+            cout << "РќРµС‚ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ РґР»СЏ СѓРІРѕР»СЊРЅРµРЅРёСЏ (РєСЂРѕРјРµ РґРёСЂРµРєС‚РѕСЂР°).\n";
             break;
         }
 
-        int choice = getIntegerInput("Введите номер сотрудника: ");
+        int choice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃРѕС‚СЂСѓРґРЅРёРєР°: ");
         if (choice <= 0 || choice > fireableEmployees.size()) {
-            cout << "Неверный номер!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ!\n";
             break;
         }
 
@@ -728,7 +728,7 @@ void manageEmployees(Zoo& zoo) {
             if (it->position != Employee::Director) {
                 if (current_index == choice) {
                     it = zoo.employees.erase(it);
-                    cout << "Сотрудник уволен!\n";
+                    cout << "РЎРѕС‚СЂСѓРґРЅРёРє СѓРІРѕР»РµРЅ!\n";
                     break;
                 }
                 current_index++;
@@ -738,89 +738,89 @@ void manageEmployees(Zoo& zoo) {
         break;
     }
     case 3: {
-        cout << "\nСписок сотрудников:\n";
+        cout << "\nРЎРїРёСЃРѕРє СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ:\n";
         for (auto& emp : zoo.employees) {
-            cout << "- " << emp.name << " (" << emp.getPositionName() << ") Зарплата: "
-                << emp.salary << ", Обслуживает: ";
+            cout << "- " << emp.name << " (" << emp.getPositionName() << ") Р—Р°СЂРїР»Р°С‚Р°: "
+                << emp.salary << ", РћР±СЃР»СѓР¶РёРІР°РµС‚: ";
             if (emp.position == Employee::Veterinarian) {
-                cout << emp.assignedAnimals.size() << "/" << emp.maxCapacity << " животных";
+                cout << emp.assignedAnimals.size() << "/" << emp.maxCapacity << " Р¶РёРІРѕС‚РЅС‹С…";
             }
             else if (emp.position == Employee::Cleaner || emp.position == Employee::Feeder) {
-                cout << emp.assignedAviaries.size() << "/" << emp.maxCapacity << " вольеров";
+                cout << emp.assignedAviaries.size() << "/" << emp.maxCapacity << " РІРѕР»СЊРµСЂРѕРІ";
             }
             else {
-                cout << "Неприменимо";
+                cout << "РќРµРїСЂРёРјРµРЅРёРјРѕ";
             }
             cout << "\n";
         }
         break;
     }
     case 4: {
-        cout << "\n--- Назначение работников ---\n";
+        cout << "\n--- РќР°Р·РЅР°С‡РµРЅРёРµ СЂР°Р±РѕС‚РЅРёРєРѕРІ ---\n";
         if (zoo.employees.empty() || (zoo.employees.size() == 1 && zoo.employees.front().position == Employee::Director)) {
-            cout << "У вас нет работников для назначения (кроме директора).\n";
+            cout << "РЈ РІР°СЃ РЅРµС‚ СЂР°Р±РѕС‚РЅРёРєРѕРІ РґР»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ (РєСЂРѕРјРµ РґРёСЂРµРєС‚РѕСЂР°).\n";
             break;
         }
         if (zoo.enclosures.empty()) {
-            cout << "У вас нет вольеров для назначения работников.\n";
+            cout << "РЈ РІР°СЃ РЅРµС‚ РІРѕР»СЊРµСЂРѕРІ РґР»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ СЂР°Р±РѕС‚РЅРёРєРѕРІ.\n";
             break;
         }
 
-        cout << "Выберите работника для назначения:\n";
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р±РѕС‚РЅРёРєР° РґР»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ:\n";
         int empIndex = 1;
         vector<Employee*> assignableEmployees;
         for (auto& emp : zoo.employees) {
             if (emp.position != Employee::Director) {
                 assignableEmployees.push_back(&emp);
-                cout << empIndex << ". " << emp.name << " (" << emp.getPositionName() << ") Назначено: ";
+                cout << empIndex << ". " << emp.name << " (" << emp.getPositionName() << ") РќР°Р·РЅР°С‡РµРЅРѕ: ";
                 if (emp.position == Employee::Veterinarian) {
-                    cout << emp.assignedAnimals.size() << "/" << emp.maxCapacity << " животных";
+                    cout << emp.assignedAnimals.size() << "/" << emp.maxCapacity << " Р¶РёРІРѕС‚РЅС‹С…";
                 }
                 else if (emp.position == Employee::Cleaner || emp.position == Employee::Feeder) {
-                    cout << emp.assignedAviaries.size() << "/" << emp.maxCapacity << " вольеров";
+                    cout << emp.assignedAviaries.size() << "/" << emp.maxCapacity << " РІРѕР»СЊРµСЂРѕРІ";
                 }
                 cout << "\n";
                 empIndex++;
             }
         }
 
-        int selectedEmpChoice = getIntegerInput("Введите номер работника: ");
+        int selectedEmpChoice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЂР°Р±РѕС‚РЅРёРєР°: ");
         if (selectedEmpChoice <= 0 || selectedEmpChoice > assignableEmployees.size()) {
-            cout << "Неверный номер работника!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ СЂР°Р±РѕС‚РЅРёРєР°!\n";
             break;
         }
         Employee* selectedEmployee = assignableEmployees[selectedEmpChoice - 1];
 
         if (selectedEmployee->position == Employee::Veterinarian) {
-            cout << "\nНазначение ветеринара \"" << selectedEmployee->name << "\" к животным:\n";
+            cout << "\nРќР°Р·РЅР°С‡РµРЅРёРµ РІРµС‚РµСЂРёРЅР°СЂР° \"" << selectedEmployee->name << "\" Рє Р¶РёРІРѕС‚РЅС‹Рј:\n";
             if (selectedEmployee->assignedAnimals.size() >= selectedEmployee->maxCapacity) {
-                cout << "Ветеринар уже обслуживает максимальное количество животных.\n";
+                cout << "Р’РµС‚РµСЂРёРЅР°СЂ СѓР¶Рµ РѕР±СЃР»СѓР¶РёРІР°РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р¶РёРІРѕС‚РЅС‹С….\n";
                 break;
             }
 
-            cout << "Выберите вольер, из которого взять животных:\n";
+            cout << "Р’С‹Р±РµСЂРёС‚Рµ РІРѕР»СЊРµСЂ, РёР· РєРѕС‚РѕСЂРѕРіРѕ РІР·СЏС‚СЊ Р¶РёРІРѕС‚РЅС‹С…:\n";
             int aviaryIndex = 1;
             vector<Aviary*> aviariesWithAnimals;
             for (auto& enc : zoo.enclosures) {
                 if (!enc.animals.empty()) {
                     aviariesWithAnimals.push_back(&enc);
-                    cout << aviaryIndex << ". Климат: " << enc.getClimateName() << ", Животных: " << enc.animals.size() << "\n";
+                    cout << aviaryIndex << ". РљР»РёРјР°С‚: " << enc.getClimateName() << ", Р–РёРІРѕС‚РЅС‹С…: " << enc.animals.size() << "\n";
                     aviaryIndex++;
                 }
             }
             if (aviariesWithAnimals.empty()) {
-                cout << "Нет вольеров с животными для назначения.\n";
+                cout << "РќРµС‚ РІРѕР»СЊРµСЂРѕРІ СЃ Р¶РёРІРѕС‚РЅС‹РјРё РґР»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ.\n";
                 break;
             }
 
-            int selectedAviaryChoice = getIntegerInput("Введите номер вольера: ");
+            int selectedAviaryChoice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°: ");
             if (selectedAviaryChoice <= 0 || selectedAviaryChoice > aviariesWithAnimals.size()) {
-                cout << "Неверный номер вольера!\n";
+                cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°!\n";
                 break;
             }
             Aviary* selectedAviary = aviariesWithAnimals[selectedAviaryChoice - 1];
 
-            cout << "\nВыберите животных для назначения ветеринару (до " << selectedEmployee->maxCapacity - selectedEmployee->assignedAnimals.size() << "):\n";
+            cout << "\nР’С‹Р±РµСЂРёС‚Рµ Р¶РёРІРѕС‚РЅС‹С… РґР»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ РІРµС‚РµСЂРёРЅР°СЂСѓ (РґРѕ " << selectedEmployee->maxCapacity - selectedEmployee->assignedAnimals.size() << "):\n";
             int animalIndex = 1;
             vector<Animal*> assignableAnimals;
             for (auto& animal : selectedAviary->animals) {
@@ -833,40 +833,40 @@ void manageEmployees(Zoo& zoo) {
                 }
                 if (!alreadyAssigned) {
                     assignableAnimals.push_back(&animal);
-                    cout << animalIndex << ". " << animal.name << " (" << animal.species << ") - " << (animal.isSick ? "Болен" : "Здоров") << "\n";
+                    cout << animalIndex << ". " << animal.name << " (" << animal.species << ") - " << (animal.isSick ? "Р‘РѕР»РµРЅ" : "Р—РґРѕСЂРѕРІ") << "\n";
                     animalIndex++;
                 }
             }
             if (assignableAnimals.empty()) {
-                cout << "Нет доступных животных в этом вольере для назначения.\n";
+                cout << "РќРµС‚ РґРѕСЃС‚СѓРїРЅС‹С… Р¶РёРІРѕС‚РЅС‹С… РІ СЌС‚РѕРј РІРѕР»СЊРµСЂРµ РґР»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ.\n";
                 break;
             }
 
-            int numToAssign = getIntegerInput("Сколько животных назначить? ");
+            int numToAssign = getIntegerInput("РЎРєРѕР»СЊРєРѕ Р¶РёРІРѕС‚РЅС‹С… РЅР°Р·РЅР°С‡РёС‚СЊ? ");
             if (numToAssign <= 0 || numToAssign > assignableAnimals.size() || numToAssign > selectedEmployee->maxCapacity - selectedEmployee->assignedAnimals.size()) {
-                cout << "Неверное количество или превышен лимит ветеринара.\n";
+                cout << "РќРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РёР»Рё РїСЂРµРІС‹С€РµРЅ Р»РёРјРёС‚ РІРµС‚РµСЂРёРЅР°СЂР°.\n";
                 break;
             }
 
             for (int i = 0; i < numToAssign; ++i) {
-                int animalChoice = getIntegerInput("Введите номер животного " + to_string(i + 1) + ": ");
+                int animalChoice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р¶РёРІРѕС‚РЅРѕРіРѕ " + to_string(i + 1) + ": ");
                 if (animalChoice <= 0 || animalChoice > assignableAnimals.size()) {
-                    cout << "Неверный номер животного! Назначение прервано.\n";
+                    cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ Р¶РёРІРѕС‚РЅРѕРіРѕ! РќР°Р·РЅР°С‡РµРЅРёРµ РїСЂРµСЂРІР°РЅРѕ.\n";
                     break;
                 }
                 selectedEmployee->assignedAnimals.push_back(assignableAnimals[animalChoice - 1]);
-                cout << "Животное \"" << assignableAnimals[animalChoice - 1]->name << "\" назначено ветеринару.\n";
+                cout << "Р–РёРІРѕС‚РЅРѕРµ \"" << assignableAnimals[animalChoice - 1]->name << "\" РЅР°Р·РЅР°С‡РµРЅРѕ РІРµС‚РµСЂРёРЅР°СЂСѓ.\n";
             }
 
         }
         else if (selectedEmployee->position == Employee::Cleaner || selectedEmployee->position == Employee::Feeder) {
-            cout << "\nНазначение " << selectedEmployee->getPositionName() << "а \"" << selectedEmployee->name << "\" к вольерам:\n";
+            cout << "\nРќР°Р·РЅР°С‡РµРЅРёРµ " << selectedEmployee->getPositionName() << "Р° \"" << selectedEmployee->name << "\" Рє РІРѕР»СЊРµСЂР°Рј:\n";
             if (selectedEmployee->assignedAviaries.size() >= selectedEmployee->maxCapacity) {
-                cout << selectedEmployee->getPositionName() << " уже обслуживает максимальное количество вольеров.\n";
+                cout << selectedEmployee->getPositionName() << " СѓР¶Рµ РѕР±СЃР»СѓР¶РёРІР°РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРѕР»СЊРµСЂРѕРІ.\n";
                 break;
             }
 
-            cout << "Выберите вольер для назначения (до " << selectedEmployee->maxCapacity - selectedEmployee->assignedAviaries.size() << "):\n";
+            cout << "Р’С‹Р±РµСЂРёС‚Рµ РІРѕР»СЊРµСЂ РґР»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ (РґРѕ " << selectedEmployee->maxCapacity - selectedEmployee->assignedAviaries.size() << "):\n";
             int aviaryIndex = 1;
             vector<Aviary*> assignableAviaries;
             for (auto& enc : zoo.enclosures) {
@@ -879,29 +879,29 @@ void manageEmployees(Zoo& zoo) {
                 }
                 if (!alreadyAssigned) {
                     assignableAviaries.push_back(&enc);
-                    cout << aviaryIndex << ". Климат: " << enc.getClimateName() << ", Животных: " << enc.animals.size() << "/" << enc.vmestimost << "\n";
+                    cout << aviaryIndex << ". РљР»РёРјР°С‚: " << enc.getClimateName() << ", Р–РёРІРѕС‚РЅС‹С…: " << enc.animals.size() << "/" << enc.vmestimost << "\n";
                     aviaryIndex++;
                 }
             }
             if (assignableAviaries.empty()) {
-                cout << "Нет доступных вольеров для назначения.\n";
+                cout << "РќРµС‚ РґРѕСЃС‚СѓРїРЅС‹С… РІРѕР»СЊРµСЂРѕРІ РґР»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ.\n";
                 break;
             }
 
-            int numToAssign = getIntegerInput("Сколько вольеров назначить? ");
+            int numToAssign = getIntegerInput("РЎРєРѕР»СЊРєРѕ РІРѕР»СЊРµСЂРѕРІ РЅР°Р·РЅР°С‡РёС‚СЊ? ");
             if (numToAssign <= 0 || numToAssign > assignableAviaries.size() || numToAssign > selectedEmployee->maxCapacity - selectedEmployee->assignedAviaries.size()) {
-                cout << "Неверное количество или превышен лимит работника.\n";
+                cout << "РќРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РёР»Рё РїСЂРµРІС‹С€РµРЅ Р»РёРјРёС‚ СЂР°Р±РѕС‚РЅРёРєР°.\n";
                 break;
             }
 
             for (int i = 0; i < numToAssign; ++i) {
-                int aviaryChoice = getIntegerInput("Введите номер вольера " + to_string(i + 1) + ": ");
+                int aviaryChoice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР° " + to_string(i + 1) + ": ");
                 if (aviaryChoice <= 0 || aviaryChoice > assignableAviaries.size()) {
-                    cout << "Неверный номер вольера! Назначение прервано.\n";
+                    cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°! РќР°Р·РЅР°С‡РµРЅРёРµ РїСЂРµСЂРІР°РЅРѕ.\n";
                     break;
                 }
                 selectedEmployee->assignedAviaries.push_back(assignableAviaries[aviaryChoice - 1]);
-                cout << "Вольер с климатом \"" << assignableAviaries[aviaryChoice - 1]->getClimateName() << "\" назначен " << selectedEmployee->getPositionName() << "у.\n";
+                cout << "Р’РѕР»СЊРµСЂ СЃ РєР»РёРјР°С‚РѕРј \"" << assignableAviaries[aviaryChoice - 1]->getClimateName() << "\" РЅР°Р·РЅР°С‡РµРЅ " << selectedEmployee->getPositionName() << "Сѓ.\n";
             }
         }
 
@@ -911,101 +911,101 @@ void manageEmployees(Zoo& zoo) {
         return;
     }
 }
-// управлению вольерами
+// СѓРїСЂР°РІР»РµРЅРёСЋ РІРѕР»СЊРµСЂР°РјРё
 void manageAviary(Zoo& zoo) {
-    cout << "\n--- Управление вольерами ---\n";
-    cout << "1. Построить вольер\n";
-    cout << "2. Просмотреть вольеры\n";
-    cout << "3. Улучшить вольер\n";
-    cout << "0. Назад\n";
+    cout << "\n--- РЈРїСЂР°РІР»РµРЅРёРµ РІРѕР»СЊРµСЂР°РјРё ---\n";
+    cout << "1. РџРѕСЃС‚СЂРѕРёС‚СЊ РІРѕР»СЊРµСЂ\n";
+    cout << "2. РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ РІРѕР»СЊРµСЂС‹\n";
+    cout << "3. РЈР»СѓС‡С€РёС‚СЊ РІРѕР»СЊРµСЂ\n";
+    cout << "0. РќР°Р·Р°Рґ\n";
 
-    int choice = getIntegerInput("Выберите действие: ");
+    int choice = getIntegerInput("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ");
     switch (choice) {
     case 1: {
-        cout << "\n--- Создание нового вольера ---\n";
-        cout << "Выберите климат для вольера:\n";
-        cout << "0. Пустыня\n";
-        cout << "1. Лес\n";
-        cout << "2. Арктика\n";
-        cout << "3. Океан\n";
-        Animal::Climate climate = static_cast<Animal::Climate>(getIntegerInput("Ваш выбор: "));
+        cout << "\n--- РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ РІРѕР»СЊРµСЂР° ---\n";
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ РєР»РёРјР°С‚ РґР»СЏ РІРѕР»СЊРµСЂР°:\n";
+        cout << "0. РџСѓСЃС‚С‹РЅСЏ\n";
+        cout << "1. Р›РµСЃ\n";
+        cout << "2. РђСЂРєС‚РёРєР°\n";
+        cout << "3. РћРєРµР°РЅ\n";
+        Animal::Climate climate = static_cast<Animal::Climate>(getIntegerInput("Р’Р°С€ РІС‹Р±РѕСЂ: "));
 
-        int capacity = getIntegerInput("Вместимость (Одно место = 50 монет): ");
+        int capacity = getIntegerInput("Р’РјРµСЃС‚РёРјРѕСЃС‚СЊ (РћРґРЅРѕ РјРµСЃС‚Рѕ = 50 РјРѕРЅРµС‚): ");
 
         Aviary newEnclosure(climate, capacity);
         int cost = newEnclosure.calculateCost();
 
-        cout << "Стоимость вольера: " << cost << " монет\n";
-        cout << "Хотите построить этот вольер?\n";
-        cout << "1. Да\n2. Нет\n";
-        int confirm = getIntegerInput("Ваш выбор: ");
+        cout << "РЎС‚РѕРёРјРѕСЃС‚СЊ РІРѕР»СЊРµСЂР°: " << cost << " РјРѕРЅРµС‚\n";
+        cout << "РҐРѕС‚РёС‚Рµ РїРѕСЃС‚СЂРѕРёС‚СЊ СЌС‚РѕС‚ РІРѕР»СЊРµСЂ?\n";
+        cout << "1. Р”Р°\n2. РќРµС‚\n";
+        int confirm = getIntegerInput("Р’Р°С€ РІС‹Р±РѕСЂ: ");
 
         if (confirm != 1) {
-            cout << "Строительство отменено.\n";
+            cout << "РЎС‚СЂРѕРёС‚РµР»СЊСЃС‚РІРѕ РѕС‚РјРµРЅРµРЅРѕ.\n";
             break;
         }
 
         if (zoo.money < cost) {
-            cout << "Недостаточно средств для строительства!\n";
+            cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ СЃС‚СЂРѕРёС‚РµР»СЊСЃС‚РІР°!\n";
             break;
         }
 
         zoo.enclosures.emplace_back(climate, capacity);
         zoo.money -= cost;
-        cout << "Вольер успешно построен!\n";
+        cout << "Р’РѕР»СЊРµСЂ СѓСЃРїРµС€РЅРѕ РїРѕСЃС‚СЂРѕРµРЅ!\n";
         break;
     }
 
     case 2: {
-        cout << "\nСписок вольеров:\n";
+        cout << "\nРЎРїРёСЃРѕРє РІРѕР»СЊРµСЂРѕРІ:\n";
         if (zoo.enclosures.empty()) {
-            cout << "У вас нет вольеров.\n";
+            cout << "РЈ РІР°СЃ РЅРµС‚ РІРѕР»СЊРµСЂРѕРІ.\n";
         }
         else {
             int index = 1;
             for (auto& enc : zoo.enclosures) {
                 string climate;
                 switch (enc.climat) {
-                case Animal::Desert: climate = "Пустыня"; break;
-                case Animal::Forest: climate = "Лес"; break;
-                case Animal::Artic: climate = "Арктика"; break;
-                case Animal::Ocean: climate = "Океан"; break;
+                case Animal::Desert: climate = "РџСѓСЃС‚С‹РЅСЏ"; break;
+                case Animal::Forest: climate = "Р›РµСЃ"; break;
+                case Animal::Artic: climate = "РђСЂРєС‚РёРєР°"; break;
+                case Animal::Ocean: climate = "РћРєРµР°РЅ"; break;
                 }
-                cout << index << ". Климат: " << climate
-                    << ", Уровень: " << enc.level
-                    << ", Животных: " << enc.animals.size() << "/" << enc.vmestimost
-                    << ", Больных: " << enc.sickAnimalsCount
-                    << ", Расходы в день: " << enc.daytrati << "\n";
+                cout << index << ". РљР»РёРјР°С‚: " << climate
+                    << ", РЈСЂРѕРІРµРЅСЊ: " << enc.level
+                    << ", Р–РёРІРѕС‚РЅС‹С…: " << enc.animals.size() << "/" << enc.vmestimost
+                    << ", Р‘РѕР»СЊРЅС‹С…: " << enc.sickAnimalsCount
+                    << ", Р Р°СЃС…РѕРґС‹ РІ РґРµРЅСЊ: " << enc.daytrati << "\n";
                 index++;
             }
         }
         break;
     }
     case 3: {
-        cout << "\nУлучшение вольера:\n";
+        cout << "\nРЈР»СѓС‡С€РµРЅРёРµ РІРѕР»СЊРµСЂР°:\n";
         if (zoo.enclosures.empty()) {
-            cout << "У вас нет вольеров для улучшения.\n";
+            cout << "РЈ РІР°СЃ РЅРµС‚ РІРѕР»СЊРµСЂРѕРІ РґР»СЏ СѓР»СѓС‡С€РµРЅРёСЏ.\n";
             break;
         }
         int index = 1;
         for (auto& enc : zoo.enclosures) {
             string climate;
             switch (enc.climat) {
-            case Animal::Desert: climate = "Пустыня"; break;
-            case Animal::Forest: climate = "Лес"; break;
-            case Animal::Artic: climate = "Арктика"; break;
-            case Animal::Ocean: climate = "Океан"; break;
+            case Animal::Desert: climate = "РџСѓСЃС‚С‹РЅСЏ"; break;
+            case Animal::Forest: climate = "Р›РµСЃ"; break;
+            case Animal::Artic: climate = "РђСЂРєС‚РёРєР°"; break;
+            case Animal::Ocean: climate = "РћРєРµР°РЅ"; break;
             }
-            cout << index << ". Климат: " << climate
-                << ", Уровень: " << enc.level
-                << ", Животных: " << enc.animals.size() << "/" << enc.vmestimost
-                << ", Расходы в день: " << enc.daytrati << "\n";
+            cout << index << ". РљР»РёРјР°С‚: " << climate
+                << ", РЈСЂРѕРІРµРЅСЊ: " << enc.level
+                << ", Р–РёРІРѕС‚РЅС‹С…: " << enc.animals.size() << "/" << enc.vmestimost
+                << ", Р Р°СЃС…РѕРґС‹ РІ РґРµРЅСЊ: " << enc.daytrati << "\n";
             index++;
         }
 
-        int choice = getIntegerInput("Введите номер вольера для улучшения: ");
+        int choice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР° РґР»СЏ СѓР»СѓС‡С€РµРЅРёСЏ: ");
         if (choice <= 0 || choice > zoo.enclosures.size()) {
-            cout << "Неверный номер!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ!\n";
             break;
         }
 
@@ -1013,24 +1013,24 @@ void manageAviary(Zoo& zoo) {
         advance(it, choice - 1);
 
         int upgradeCost = it->vmestimost * 5 * (it->level + 1);
-        cout << "Стоимость улучшения: " << upgradeCost << " монет\n";
-        cout << "Хотите улучшить этот вольер?\n";
-        cout << "1. Да\n2. Нет\n";
-        int confirm = getIntegerInput("Ваш выбор: ");
+        cout << "РЎС‚РѕРёРјРѕСЃС‚СЊ СѓР»СѓС‡С€РµРЅРёСЏ: " << upgradeCost << " РјРѕРЅРµС‚\n";
+        cout << "РҐРѕС‚РёС‚Рµ СѓР»СѓС‡С€РёС‚СЊ СЌС‚РѕС‚ РІРѕР»СЊРµСЂ?\n";
+        cout << "1. Р”Р°\n2. РќРµС‚\n";
+        int confirm = getIntegerInput("Р’Р°С€ РІС‹Р±РѕСЂ: ");
 
         if (confirm != 1) {
-            cout << "Улучшение отменено.\n";
+            cout << "РЈР»СѓС‡С€РµРЅРёРµ РѕС‚РјРµРЅРµРЅРѕ.\n";
             break;
         }
 
         if (zoo.money < upgradeCost) {
-            cout << "Недостаточно средств для улучшения!\n";
+            cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ СѓР»СѓС‡С€РµРЅРёСЏ!\n";
             break;
         }
 
         if (it->upgrade(upgradeCost)) {
             zoo.money -= upgradeCost;
-            cout << "Вольер успешно улучшен до уровня " << it->level << "!\n";
+            cout << "Р’РѕР»СЊРµСЂ СѓСЃРїРµС€РЅРѕ СѓР»СѓС‡С€РµРЅ РґРѕ СѓСЂРѕРІРЅСЏ " << it->level << "!\n";
         }
         break;
     }
@@ -1039,22 +1039,22 @@ void manageAviary(Zoo& zoo) {
     }
 }
 
-// Управление животными
+// РЈРїСЂР°РІР»РµРЅРёРµ Р¶РёРІРѕС‚РЅС‹РјРё
 void manageAnimals(Zoo& zoo) {
-    cout << "\n--- Управление животными ---\n";
-    cout << "1. Купить готовое животное\n";
-    cout << "2. Продать животное\n";
-    cout << "3. Просмотреть животных\n";
-    cout << "4. Переименовать животное\n";
-    cout << "5. Размножить животных\n";
-    cout << "0. Назад\n";
+    cout << "\n--- РЈРїСЂР°РІР»РµРЅРёРµ Р¶РёРІРѕС‚РЅС‹РјРё ---\n";
+    cout << "1. РљСѓРїРёС‚СЊ РіРѕС‚РѕРІРѕРµ Р¶РёРІРѕС‚РЅРѕРµ\n";
+    cout << "2. РџСЂРѕРґР°С‚СЊ Р¶РёРІРѕС‚РЅРѕРµ\n";
+    cout << "3. РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ Р¶РёРІРѕС‚РЅС‹С…\n";
+    cout << "4. РџРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ Р¶РёРІРѕС‚РЅРѕРµ\n";
+    cout << "5. Р Р°Р·РјРЅРѕР¶РёС‚СЊ Р¶РёРІРѕС‚РЅС‹С…\n";
+    cout << "0. РќР°Р·Р°Рґ\n";
 
-    int choice = getIntegerInput("Выберите действие: ");
+    int choice = getIntegerInput("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ");
     switch (choice) {
     case 1: {
-        cout << "\n--- Покупка готового животного ---\n";
+        cout << "\n--- РџРѕРєСѓРїРєР° РіРѕС‚РѕРІРѕРіРѕ Р¶РёРІРѕС‚РЅРѕРіРѕ ---\n";
         if (zoo.day > 10 && zoo.getTotalAnimals() >= 1) {
-            cout << "После 10-го дня вы можете купить только одного животного!\n";
+            cout << "РџРѕСЃР»Рµ 10-РіРѕ РґРЅСЏ РІС‹ РјРѕР¶РµС‚Рµ РєСѓРїРёС‚СЊ С‚РѕР»СЊРєРѕ РѕРґРЅРѕРіРѕ Р¶РёРІРѕС‚РЅРѕРіРѕ!\n";
             break;
         }
 
@@ -1064,54 +1064,54 @@ void manageAnimals(Zoo& zoo) {
             randomAnimals.push_back(generateRandomAnimal());
         }
 
-        cout << "Доступные животные:\n";
+        cout << "Р”РѕСЃС‚СѓРїРЅС‹Рµ Р¶РёРІРѕС‚РЅС‹Рµ:\n";
         for (int i = 0; i < randomAnimals.size(); ++i) {
             Animal& animal = randomAnimals[i];
             string climateName;
             switch (animal.climate) {
-            case Animal::Desert: climateName = "Пустыня"; break;
-            case Animal::Forest: climateName = "Лес"; break;
-            case Animal::Artic: climateName = "Арктика"; break;
-            case Animal::Ocean: climateName = "Океан"; break;
+            case Animal::Desert: climateName = "РџСѓСЃС‚С‹РЅСЏ"; break;
+            case Animal::Forest: climateName = "Р›РµСЃ"; break;
+            case Animal::Artic: climateName = "РђСЂРєС‚РёРєР°"; break;
+            case Animal::Ocean: climateName = "РћРєРµР°РЅ"; break;
             }
 
-            string genderName = (animal.gender == Animal::Male) ? "Самец" : "Самка";
+            string genderName = (animal.gender == Animal::Male) ? "РЎР°РјРµС†" : "РЎР°РјРєР°";
 
-            cout << i + 1 << ". Вид: " << animal.species
-                << ", Возраст: " << animal.age << " дней"
-                << ", Вес: " << animal.weight << " кг"
-                << ", Климат: " << climateName
-                << ", Тип: " << (animal.isCarnivore ? "Хищник" : "Травоядное")
-                << ", Пол: " << genderName
-                << ", Цена: " << animal.PriceAnimal() << " монет\n";
+            cout << i + 1 << ". Р’РёРґ: " << animal.species
+                << ", Р’РѕР·СЂР°СЃС‚: " << animal.age << " РґРЅРµР№"
+                << ", Р’РµСЃ: " << animal.weight << " РєРі"
+                << ", РљР»РёРјР°С‚: " << climateName
+                << ", РўРёРї: " << (animal.isCarnivore ? "РҐРёС‰РЅРёРє" : "РўСЂР°РІРѕСЏРґРЅРѕРµ")
+                << ", РџРѕР»: " << genderName
+                << ", Р¦РµРЅР°: " << animal.PriceAnimal() << " РјРѕРЅРµС‚\n";
         }
 
-        int choice = getIntegerInput("Введите номер животного для покупки: ");
+        int choice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р¶РёРІРѕС‚РЅРѕРіРѕ РґР»СЏ РїРѕРєСѓРїРєРё: ");
         if (choice <= 0 || choice > randomAnimals.size()) {
-            cout << "Неверный номер!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ!\n";
             break;
         }
 
         Animal selectedAnimal = randomAnimals[choice - 1];
         int price = selectedAnimal.PriceAnimal();
 
-        cout << "Итоговая цена животного: " << price << " монет\n";
-        cout << "Хотите купить это животное?\n";
-        cout << "1. Да\n2. Нет\n";
-        int confirm = getIntegerInput("Ваш выбор: ");
+        cout << "РС‚РѕРіРѕРІР°СЏ С†РµРЅР° Р¶РёРІРѕС‚РЅРѕРіРѕ: " << price << " РјРѕРЅРµС‚\n";
+        cout << "РҐРѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ СЌС‚Рѕ Р¶РёРІРѕС‚РЅРѕРµ?\n";
+        cout << "1. Р”Р°\n2. РќРµС‚\n";
+        int confirm = getIntegerInput("Р’Р°С€ РІС‹Р±РѕСЂ: ");
 
         if (confirm != 1) {
-            cout << "Покупка отменена.\n";
+            cout << "РџРѕРєСѓРїРєР° РѕС‚РјРµРЅРµРЅР°.\n";
             break;
         }
 
         if (zoo.money < price) {
-            cout << "Недостаточно средств для покупки!\n";
+            cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ РїРѕРєСѓРїРєРё!\n";
             break;
         }
 
         string name;
-        cout << "Введите имя для животного: ";
+        cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ РґР»СЏ Р¶РёРІРѕС‚РЅРѕРіРѕ: ";
         getline(cin, name);
         selectedAnimal.name = name;
 
@@ -1123,22 +1123,22 @@ void manageAnimals(Zoo& zoo) {
         }
 
         if (suitableEnclosures.empty()) {
-            cout << "Ошибка: Нет подходящего вольера!\n";
+            cout << "РћС€РёР±РєР°: РќРµС‚ РїРѕРґС…РѕРґСЏС‰РµРіРѕ РІРѕР»СЊРµСЂР°!\n";
             break;
         }
 
-        cout << "\nВыберите вольер для размещения животного:\n";
+        cout << "\nР’С‹Р±РµСЂРёС‚Рµ РІРѕР»СЊРµСЂ РґР»СЏ СЂР°Р·РјРµС‰РµРЅРёСЏ Р¶РёРІРѕС‚РЅРѕРіРѕ:\n";
         for (int i = 0; i < suitableEnclosures.size(); ++i) {
             Aviary* enc = suitableEnclosures[i];
-            cout << i + 1 << ". Климат: " << (enc->climat == Animal::Desert ? "Пустыня" :
-                enc->climat == Animal::Forest ? "Лес" :
-                enc->climat == Animal::Artic ? "Арктика" : "Океан")
-                << ", Животных: " << enc->animals.size() << "/" << enc->vmestimost << "\n";
+            cout << i + 1 << ". РљР»РёРјР°С‚: " << (enc->climat == Animal::Desert ? "РџСѓСЃС‚С‹РЅСЏ" :
+                enc->climat == Animal::Forest ? "Р›РµСЃ" :
+                enc->climat == Animal::Artic ? "РђСЂРєС‚РёРєР°" : "РћРєРµР°РЅ")
+                << ", Р–РёРІРѕС‚РЅС‹С…: " << enc->animals.size() << "/" << enc->vmestimost << "\n";
         }
 
-        int enclosureChoice = getIntegerInput("Введите номер вольера: ");
+        int enclosureChoice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°: ");
         if (enclosureChoice <= 0 || enclosureChoice > suitableEnclosures.size()) {
-            cout << "Неверный номер вольера!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°!\n";
             break;
         }
 
@@ -1146,13 +1146,13 @@ void manageAnimals(Zoo& zoo) {
         selectedEnclosure->volerskanback(selectedAnimal);
         zoo.money -= price;
 
-        cout << "Животное \"" << selectedAnimal.name << "\" успешно добавлено в вольер!\n";
+        cout << "Р–РёРІРѕС‚РЅРѕРµ \"" << selectedAnimal.name << "\" СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ РІ РІРѕР»СЊРµСЂ!\n";
         break;
     }
     case 2: {
-        cout << "\n--- Продажа животных ---\n";
+        cout << "\n--- РџСЂРѕРґР°Р¶Р° Р¶РёРІРѕС‚РЅС‹С… ---\n";
         if (zoo.enclosures.empty()) {
-            cout << "У вас нет вольеров!\n";
+            cout << "РЈ РІР°СЃ РЅРµС‚ РІРѕР»СЊРµСЂРѕРІ!\n";
             break;
         }
 
@@ -1160,19 +1160,19 @@ void manageAnimals(Zoo& zoo) {
         for (auto& enc : zoo.enclosures) {
             string climateName;
             switch (enc.climat) {
-            case Animal::Desert: climateName = "Пустыня"; break;
-            case Animal::Forest: climateName = "Лес"; break;
-            case Animal::Artic: climateName = "Арктика"; break;
-            case Animal::Ocean: climateName = "Океан"; break;
+            case Animal::Desert: climateName = "РџСѓСЃС‚С‹РЅСЏ"; break;
+            case Animal::Forest: climateName = "Р›РµСЃ"; break;
+            case Animal::Artic: climateName = "РђСЂРєС‚РёРєР°"; break;
+            case Animal::Ocean: climateName = "РћРєРµР°РЅ"; break;
             }
-            cout << index << ". Климат: " << climateName
-                << ", Животных: " << enc.animals.size() << "/" << enc.vmestimost << "\n";
+            cout << index << ". РљР»РёРјР°С‚: " << climateName
+                << ", Р–РёРІРѕС‚РЅС‹С…: " << enc.animals.size() << "/" << enc.vmestimost << "\n";
             index++;
         }
 
-        int enclosureChoice = getIntegerInput("Введите номер вольера: ");
+        int enclosureChoice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°: ");
         if (enclosureChoice <= 0 || enclosureChoice > zoo.enclosures.size()) {
-            cout << "Неверный номер вольера!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°!\n";
             break;
         }
 
@@ -1180,24 +1180,24 @@ void manageAnimals(Zoo& zoo) {
         advance(encIt, enclosureChoice - 1);
 
         if (encIt->animals.empty()) {
-            cout << "В этом вольере нет животных!\n";
+            cout << "Р’ СЌС‚РѕРј РІРѕР»СЊРµСЂРµ РЅРµС‚ Р¶РёРІРѕС‚РЅС‹С…!\n";
             break;
         }
 
-        cout << "\nЖивотные в вольере:\n";
+        cout << "\nР–РёРІРѕС‚РЅС‹Рµ РІ РІРѕР»СЊРµСЂРµ:\n";
         index = 1;
         for (auto& animal : encIt->animals) {
-            string genderName = (animal.gender == Animal::Male) ? "Самец" : "Самка";
-            cout << index << ". " << animal.name << ", Возраст: " << animal.age << " дней"
-                << ", Вес: " << animal.weight << " кг, Счастье: " << animal.happiness << "/100"
-                << ", Пол: " << genderName
-                << ", Цена: " << animal.PriceAnimal() << "\n";
+            string genderName = (animal.gender == Animal::Male) ? "РЎР°РјРµС†" : "РЎР°РјРєР°";
+            cout << index << ". " << animal.name << ", Р’РѕР·СЂР°СЃС‚: " << animal.age << " РґРЅРµР№"
+                << ", Р’РµСЃ: " << animal.weight << " РєРі, РЎС‡Р°СЃС‚СЊРµ: " << animal.happiness << "/100"
+                << ", РџРѕР»: " << genderName
+                << ", Р¦РµРЅР°: " << animal.PriceAnimal() << "\n";
             index++;
         }
 
-        int animalChoice = getIntegerInput("Введите номер животного для продажи: ");
+        int animalChoice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р¶РёРІРѕС‚РЅРѕРіРѕ РґР»СЏ РїСЂРѕРґР°Р¶Рё: ");
         if (animalChoice <= 0 || animalChoice > encIt->animals.size()) {
-            cout << "Неверный номер животного!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ Р¶РёРІРѕС‚РЅРѕРіРѕ!\n";
             break;
         }
 
@@ -1207,13 +1207,13 @@ void manageAnimals(Zoo& zoo) {
         int price = animalIt->PriceAnimal();
         int sellPrice = price * 0.8;
 
-        cout << "Животное \"" << animalIt->name << "\" можно продать за " << sellPrice << " монет.\n";
-        cout << "Вы уверены, что хотите продать это животное?\n";
-        cout << "1. Да\n2. Нет\n";
-        int confirm = getIntegerInput("Ваш выбор: ");
+        cout << "Р–РёРІРѕС‚РЅРѕРµ \"" << animalIt->name << "\" РјРѕР¶РЅРѕ РїСЂРѕРґР°С‚СЊ Р·Р° " << sellPrice << " РјРѕРЅРµС‚.\n";
+        cout << "Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РїСЂРѕРґР°С‚СЊ СЌС‚Рѕ Р¶РёРІРѕС‚РЅРѕРµ?\n";
+        cout << "1. Р”Р°\n2. РќРµС‚\n";
+        int confirm = getIntegerInput("Р’Р°С€ РІС‹Р±РѕСЂ: ");
 
         if (confirm != 1) {
-            cout << "Продажа отменена.\n";
+            cout << "РџСЂРѕРґР°Р¶Р° РѕС‚РјРµРЅРµРЅР°.\n";
             break;
         }
 
@@ -1221,31 +1221,31 @@ void manageAnimals(Zoo& zoo) {
         zoo.money += sellPrice;
         encIt->removeAnimal(animalName);
 
-        cout << "Животное \"" << animalName << "\" продано за " << sellPrice << " монет.\n";
+        cout << "Р–РёРІРѕС‚РЅРѕРµ \"" << animalName << "\" РїСЂРѕРґР°РЅРѕ Р·Р° " << sellPrice << " РјРѕРЅРµС‚.\n";
         break;
     }
     case 3: {
-        cout << "\nСписок животных:\n";
+        cout << "\nРЎРїРёСЃРѕРє Р¶РёРІРѕС‚РЅС‹С…:\n";
         if (zoo.getTotalAnimals() == 0) {
-            cout << "В зоопарке нет животных.\n";
+            cout << "Р’ Р·РѕРѕРїР°СЂРєРµ РЅРµС‚ Р¶РёРІРѕС‚РЅС‹С….\n";
             break;
         }
         for (auto& enc : zoo.enclosures) {
             for (auto& animal : enc.animals) {
-                string genderName = (animal.gender == Animal::Male) ? "Самец" : "Самка";
-                cout << "- " << animal.name << " (" << animal.species << "), " << animal.age << " дней, "
-                    << animal.weight << " кг, Счастье: " << animal.happiness << "/100, "
-                    << (animal.isCarnivore ? "Хищник" : "Травоядное") << ", Пол: " << genderName
-                    << ", Состояние: " << (animal.isSick ? "Болен" : "Здоров")
-                    << ", Родители: " << animal.parent1Name << " и " << animal.parent2Name << "\n";
+                string genderName = (animal.gender == Animal::Male) ? "РЎР°РјРµС†" : "РЎР°РјРєР°";
+                cout << "- " << animal.name << " (" << animal.species << "), " << animal.age << " РґРЅРµР№, "
+                    << animal.weight << " РєРі, РЎС‡Р°СЃС‚СЊРµ: " << animal.happiness << "/100, "
+                    << (animal.isCarnivore ? "РҐРёС‰РЅРёРє" : "РўСЂР°РІРѕСЏРґРЅРѕРµ") << ", РџРѕР»: " << genderName
+                    << ", РЎРѕСЃС‚РѕСЏРЅРёРµ: " << (animal.isSick ? "Р‘РѕР»РµРЅ" : "Р—РґРѕСЂРѕРІ")
+                    << ", Р РѕРґРёС‚РµР»Рё: " << animal.parent1Name << " Рё " << animal.parent2Name << "\n";
             }
         }
         break;
     }
     case 4: {
-        cout << "\n--- Переименование животного ---\n";
+        cout << "\n--- РџРµСЂРµРёРјРµРЅРѕРІР°РЅРёРµ Р¶РёРІРѕС‚РЅРѕРіРѕ ---\n";
         if (zoo.enclosures.empty()) {
-            cout << "У вас нет вольеров!\n";
+            cout << "РЈ РІР°СЃ РЅРµС‚ РІРѕР»СЊРµСЂРѕРІ!\n";
             break;
         }
 
@@ -1253,19 +1253,19 @@ void manageAnimals(Zoo& zoo) {
         for (auto& enc : zoo.enclosures) {
             string climateName;
             switch (enc.climat) {
-            case Animal::Desert: climateName = "Пустыня"; break;
-            case Animal::Forest: climateName = "Лес"; break;
-            case Animal::Artic: climateName = "Арктика"; break;
-            case Animal::Ocean: climateName = "Океан"; break;
+            case Animal::Desert: climateName = "РџСѓСЃС‚С‹РЅСЏ"; break;
+            case Animal::Forest: climateName = "Р›РµСЃ"; break;
+            case Animal::Artic: climateName = "РђСЂРєС‚РёРєР°"; break;
+            case Animal::Ocean: climateName = "РћРєРµР°РЅ"; break;
             }
-            cout << index << ". Климат: " << climateName
-                << ", Животных: " << enc.animals.size() << "/" << enc.vmestimost << "\n";
+            cout << index << ". РљР»РёРјР°С‚: " << climateName
+                << ", Р–РёРІРѕС‚РЅС‹С…: " << enc.animals.size() << "/" << enc.vmestimost << "\n";
             index++;
         }
 
-        int enclosureChoice = getIntegerInput("Введите номер вольера: ");
+        int enclosureChoice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°: ");
         if (enclosureChoice <= 0 || enclosureChoice > zoo.enclosures.size()) {
-            cout << "Неверный номер вольера!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°!\n";
             break;
         }
 
@@ -1273,20 +1273,20 @@ void manageAnimals(Zoo& zoo) {
         advance(encIt, enclosureChoice - 1);
 
         if (encIt->animals.empty()) {
-            cout << "В этом вольере нет животных!\n";
+            cout << "Р’ СЌС‚РѕРј РІРѕР»СЊРµСЂРµ РЅРµС‚ Р¶РёРІРѕС‚РЅС‹С…!\n";
             break;
         }
 
-        cout << "\nЖивотные в вольере:\n";
+        cout << "\nР–РёРІРѕС‚РЅС‹Рµ РІ РІРѕР»СЊРµСЂРµ:\n";
         index = 1;
         for (auto& animal : encIt->animals) {
             cout << index << ". " << animal.name << " (" << animal.species << ")\n";
             index++;
         }
 
-        int animalChoice = getIntegerInput("Введите номер животного для переименования: ");
+        int animalChoice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р¶РёРІРѕС‚РЅРѕРіРѕ РґР»СЏ РїРµСЂРµРёРјРµРЅРѕРІР°РЅРёСЏ: ");
         if (animalChoice <= 0 || animalChoice > encIt->animals.size()) {
-            cout << "Неверный номер животного!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ Р¶РёРІРѕС‚РЅРѕРіРѕ!\n";
             break;
         }
 
@@ -1294,17 +1294,17 @@ void manageAnimals(Zoo& zoo) {
         advance(animalIt, animalChoice - 1);
 
         string newName;
-        cout << "Введите новое имя для животного: ";
+        cout << "Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ РёРјСЏ РґР»СЏ Р¶РёРІРѕС‚РЅРѕРіРѕ: ";
         getline(cin, newName);
 
         animalIt->rename(newName);
-        cout << "Животное успешно переименовано в \"" << newName << "\"\n";
+        cout << "Р–РёРІРѕС‚РЅРѕРµ СѓСЃРїРµС€РЅРѕ РїРµСЂРµРёРјРµРЅРѕРІР°РЅРѕ РІ \"" << newName << "\"\n";
         break;
     }
     case 5: {
-        cout << "\n--- Размножение животных ---\n";
+        cout << "\n--- Р Р°Р·РјРЅРѕР¶РµРЅРёРµ Р¶РёРІРѕС‚РЅС‹С… ---\n";
         if (zoo.enclosures.empty()) {
-            cout << "У вас нет вольеров!\n";
+            cout << "РЈ РІР°СЃ РЅРµС‚ РІРѕР»СЊРµСЂРѕРІ!\n";
             break;
         }
 
@@ -1312,19 +1312,19 @@ void manageAnimals(Zoo& zoo) {
         for (auto& enc : zoo.enclosures) {
             string climateName;
             switch (enc.climat) {
-            case Animal::Desert: climateName = "Пустыня"; break;
-            case Animal::Forest: climateName = "Лес"; break;
-            case Animal::Artic: climateName = "Арктика"; break;
-            case Animal::Ocean: climateName = "Океан"; break;
+            case Animal::Desert: climateName = "РџСѓСЃС‚С‹РЅСЏ"; break;
+            case Animal::Forest: climateName = "Р›РµСЃ"; break;
+            case Animal::Artic: climateName = "РђСЂРєС‚РёРєР°"; break;
+            case Animal::Ocean: climateName = "РћРєРµР°РЅ"; break;
             }
-            cout << index << ". Климат: " << climateName
-                << ", Животных: " << enc.animals.size() << "/" << enc.vmestimost << "\n";
+            cout << index << ". РљР»РёРјР°С‚: " << climateName
+                << ", Р–РёРІРѕС‚РЅС‹С…: " << enc.animals.size() << "/" << enc.vmestimost << "\n";
             index++;
         }
 
-        int enclosureChoice = getIntegerInput("Выберите номер вольера для размножения: ");
+        int enclosureChoice = getIntegerInput("Р’С‹Р±РµСЂРёС‚Рµ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР° РґР»СЏ СЂР°Р·РјРЅРѕР¶РµРЅРёСЏ: ");
         if (enclosureChoice <= 0 || enclosureChoice > zoo.enclosures.size()) {
-            cout << "Неверный номер вольера!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ РІРѕР»СЊРµСЂР°!\n";
             break;
         }
 
@@ -1332,38 +1332,38 @@ void manageAnimals(Zoo& zoo) {
         advance(encIt, enclosureChoice - 1);
 
         if (encIt->animals.size() < 2) {
-            cout << "В этом вольере недостаточно животных для размножения.\n";
+            cout << "Р’ СЌС‚РѕРј РІРѕР»СЊРµСЂРµ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ Р¶РёРІРѕС‚РЅС‹С… РґР»СЏ СЂР°Р·РјРЅРѕР¶РµРЅРёСЏ.\n";
             break;
         }
 
-        cout << "\nВыберите первое животное для размножения:\n";
+        cout << "\nР’С‹Р±РµСЂРёС‚Рµ РїРµСЂРІРѕРµ Р¶РёРІРѕС‚РЅРѕРµ РґР»СЏ СЂР°Р·РјРЅРѕР¶РµРЅРёСЏ:\n";
         index = 1;
         for (auto& animal : encIt->animals) {
-            string genderName = (animal.gender == Animal::Male) ? "Самец" : "Самка";
-            cout << index << ". " << animal.name << " (" << animal.species << "), Возраст: " << animal.age << " дней, Пол: " << genderName << "\n";
+            string genderName = (animal.gender == Animal::Male) ? "РЎР°РјРµС†" : "РЎР°РјРєР°";
+            cout << index << ". " << animal.name << " (" << animal.species << "), Р’РѕР·СЂР°СЃС‚: " << animal.age << " РґРЅРµР№, РџРѕР»: " << genderName << "\n";
             index++;
         }
 
-        int animal1Choice = getIntegerInput("Введите номер первого животного: ");
+        int animal1Choice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РїРµСЂРІРѕРіРѕ Р¶РёРІРѕС‚РЅРѕРіРѕ: ");
         if (animal1Choice <= 0 || animal1Choice > encIt->animals.size()) {
-            cout << "Неверный номер животного!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ Р¶РёРІРѕС‚РЅРѕРіРѕ!\n";
             break;
         }
 
         auto animal1It = encIt->animals.begin();
         advance(animal1It, animal1Choice - 1);
 
-        cout << "\nВыберите второе животное для размножения:\n";
+        cout << "\nР’С‹Р±РµСЂРёС‚Рµ РІС‚РѕСЂРѕРµ Р¶РёРІРѕС‚РЅРѕРµ РґР»СЏ СЂР°Р·РјРЅРѕР¶РµРЅРёСЏ:\n";
         index = 1;
         for (auto& animal : encIt->animals) {
-            string genderName = (animal.gender == Animal::Male) ? "Самец" : "Самка";
-            cout << index << ". " << animal.name << " (" << animal.species << "), Возраст: " << animal.age << " дней, Пол: " << genderName << "\n";
+            string genderName = (animal.gender == Animal::Male) ? "РЎР°РјРµС†" : "РЎР°РјРєР°";
+            cout << index << ". " << animal.name << " (" << animal.species << "), Р’РѕР·СЂР°СЃС‚: " << animal.age << " РґРЅРµР№, РџРѕР»: " << genderName << "\n";
             index++;
         }
 
-        int animal2Choice = getIntegerInput("Введите номер второго животного: ");
+        int animal2Choice = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РІС‚РѕСЂРѕРіРѕ Р¶РёРІРѕС‚РЅРѕРіРѕ: ");
         if (animal2Choice <= 0 || animal2Choice > encIt->animals.size()) {
-            cout << "Неверный номер животного!\n";
+            cout << "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ Р¶РёРІРѕС‚РЅРѕРіРѕ!\n";
             break;
         }
 
@@ -1371,7 +1371,7 @@ void manageAnimals(Zoo& zoo) {
         advance(animal2It, animal2Choice - 1);
 
         if (animal1It == animal2It) {
-            cout << "Нельзя размножать животное само с собой!\n";
+            cout << "РќРµР»СЊР·СЏ СЂР°Р·РјРЅРѕР¶Р°С‚СЊ Р¶РёРІРѕС‚РЅРѕРµ СЃР°РјРѕ СЃ СЃРѕР±РѕР№!\n";
             break;
         }
 
@@ -1379,16 +1379,16 @@ void manageAnimals(Zoo& zoo) {
             Animal baby = (*animal1It) + (*animal2It);
 
             if (encIt->animals.size() >= encIt->vmestimost) {
-                cout << "Ошибка: В вольере нет свободного места для детеныша.\n";
+                cout << "РћС€РёР±РєР°: Р’ РІРѕР»СЊРµСЂРµ РЅРµС‚ СЃРІРѕР±РѕРґРЅРѕРіРѕ РјРµСЃС‚Р° РґР»СЏ РґРµС‚РµРЅС‹С€Р°.\n";
                 break;
             }
 
             encIt->animals.push_back(baby);
-            cout << "Успех! Родилось новое животное \"" << baby.name << "\" (" << baby.species << ")!\n";
+            cout << "РЈСЃРїРµС…! Р РѕРґРёР»РѕСЃСЊ РЅРѕРІРѕРµ Р¶РёРІРѕС‚РЅРѕРµ \"" << baby.name << "\" (" << baby.species << ")!\n";
 
         }
         catch (const runtime_error& e) {
-            cout << "Ошибка размножения: " << e.what() << endl;
+            cout << "РћС€РёР±РєР° СЂР°Р·РјРЅРѕР¶РµРЅРёСЏ: " << e.what() << endl;
         }
         break;
     }
@@ -1398,41 +1398,41 @@ void manageAnimals(Zoo& zoo) {
     }
 }
 
-// Управление ресурсами (еда, реклама)
+// РЈРїСЂР°РІР»РµРЅРёРµ СЂРµСЃСѓСЂСЃР°РјРё (РµРґР°, СЂРµРєР»Р°РјР°)
 void manageResources(Zoo& zoo) {
-    cout << "\n--- Управление ресурсами ---\n";
-    cout << "1. Купить еду\n";
-    cout << "2. Заказать рекламу\n";
-    cout << "0. Назад\n";
+    cout << "\n--- РЈРїСЂР°РІР»РµРЅРёРµ СЂРµСЃСѓСЂСЃР°РјРё ---\n";
+    cout << "1. РљСѓРїРёС‚СЊ РµРґСѓ\n";
+    cout << "2. Р—Р°РєР°Р·Р°С‚СЊ СЂРµРєР»Р°РјСѓ\n";
+    cout << "0. РќР°Р·Р°Рґ\n";
 
-    int choice = getIntegerInput("Выберите действие: ");
+    int choice = getIntegerInput("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ");
     switch (choice) {
     case 1: {
-        cout << "\nПокупка еды:\n";
-        int amount = getIntegerInput("Сколько единиц еды хотите купить? ");
+        cout << "\nРџРѕРєСѓРїРєР° РµРґС‹:\n";
+        int amount = getIntegerInput("РЎРєРѕР»СЊРєРѕ РµРґРёРЅРёС† РµРґС‹ С…РѕС‚РёС‚Рµ РєСѓРїРёС‚СЊ? ");
         if (amount <= 0) {
-            cout << "Неверное количество!\n";
+            cout << "РќРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ!\n";
             break;
         }
 
         int cost = amount * 2;
         if (zoo.money < cost) {
-            cout << "Недостаточно средств для покупки!\n";
+            cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ РґР»СЏ РїРѕРєСѓРїРєРё!\n";
             break;
         }
 
         zoo.food += amount;
         zoo.money -= cost;
-        cout << "Куплено " << amount << " единиц еды за " << cost << " монет.\n";
+        cout << "РљСѓРїР»РµРЅРѕ " << amount << " РµРґРёРЅРёС† РµРґС‹ Р·Р° " << cost << " РјРѕРЅРµС‚.\n";
         break;
     }
     case 2: {
         const int COST_PER_POPULARITY = 30;
-        cout << "Стоимость одной единицы популярности: " << COST_PER_POPULARITY << " монет\n";
+        cout << "РЎС‚РѕРёРјРѕСЃС‚СЊ РѕРґРЅРѕР№ РµРґРёРЅРёС†С‹ РїРѕРїСѓР»СЏСЂРЅРѕСЃС‚Рё: " << COST_PER_POPULARITY << " РјРѕРЅРµС‚\n";
 
-        int cost = getIntegerInput("Введите сумму для рекламной кампании: ");
+        int cost = getIntegerInput("Р’РІРµРґРёС‚Рµ СЃСѓРјРјСѓ РґР»СЏ СЂРµРєР»Р°РјРЅРѕР№ РєР°РјРїР°РЅРёРё: ");
         if (cost <= 0) {
-            cout << "Неверная сумма!\n";
+            cout << "РќРµРІРµСЂРЅР°СЏ СЃСѓРјРјР°!\n";
             break;
         }
 
@@ -1441,10 +1441,10 @@ void manageResources(Zoo& zoo) {
             zoo.money -= cost;
             zoo.popularity += popularityIncrease;
 
-            cout << "Популярность увеличена на " << popularityIncrease << "!\n";
+            cout << "РџРѕРїСѓР»СЏСЂРЅРѕСЃС‚СЊ СѓРІРµР»РёС‡РµРЅР° РЅР° " << popularityIncrease << "!\n";
         }
         else {
-            cout << "Недостаточно средств!\n";
+            cout << "РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ!\n";
         }
         break;
     }
@@ -1453,23 +1453,23 @@ void manageResources(Zoo& zoo) {
     }
 }
 
-// Действия работников (лечить, кормить, убирать)
+// Р”РµР№СЃС‚РІРёСЏ СЂР°Р±РѕС‚РЅРёРєРѕРІ (Р»РµС‡РёС‚СЊ, РєРѕСЂРјРёС‚СЊ, СѓР±РёСЂР°С‚СЊ)
 void performEmployeeActions(Zoo& zoo) {
-    cout << "\n--- Действия работников ---\n";
-    cout << "1. Ветеринары лечат животных\n";
-    cout << "2. Кормильцы кормят вольеры\n";
-    cout << "3. Уборщики чистят вольеры\n";
-    cout << "0. Назад\n";
+    cout << "\n--- Р”РµР№СЃС‚РІРёСЏ СЂР°Р±РѕС‚РЅРёРєРѕРІ ---\n";
+    cout << "1. Р’РµС‚РµСЂРёРЅР°СЂС‹ Р»РµС‡Р°С‚ Р¶РёРІРѕС‚РЅС‹С…\n";
+    cout << "2. РљРѕСЂРјРёР»СЊС†С‹ РєРѕСЂРјСЏС‚ РІРѕР»СЊРµСЂС‹\n";
+    cout << "3. РЈР±РѕСЂС‰РёРєРё С‡РёСЃС‚СЏС‚ РІРѕР»СЊРµСЂС‹\n";
+    cout << "0. РќР°Р·Р°Рґ\n";
 
-    int choice = getIntegerInput("Выберите действие: ");
+    int choice = getIntegerInput("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ");
     switch (choice) {
     case 1: {
-        cout << "\n--- Лечение животных ветеринарами ---\n";
+        cout << "\n--- Р›РµС‡РµРЅРёРµ Р¶РёРІРѕС‚РЅС‹С… РІРµС‚РµСЂРёРЅР°СЂР°РјРё ---\n";
         bool foundVet = false;
         for (auto& emp : zoo.employees) {
             if (emp.position == Employee::Veterinarian && !emp.assignedAnimals.empty()) {
                 foundVet = true;
-                cout << "Ветеринар \"" << emp.name << "\" лечит животных:\n";
+                cout << "Р’РµС‚РµСЂРёРЅР°СЂ \"" << emp.name << "\" Р»РµС‡РёС‚ Р¶РёРІРѕС‚РЅС‹С…:\n";
                 int healedCount = 0;
                 for (Animal* animal : emp.assignedAnimals) {
                     if (animal->isSick && healedCount < emp.maxCapacity) {
@@ -1483,50 +1483,50 @@ void performEmployeeActions(Zoo& zoo) {
                             }
                         }
                         healedCount++;
-                        cout << "  - Вылечено животное \"" << animal->name << "\" (" << animal->species << ")\n";
+                        cout << "  - Р’С‹Р»РµС‡РµРЅРѕ Р¶РёРІРѕС‚РЅРѕРµ \"" << animal->name << "\" (" << animal->species << ")\n";
                     }
                 }
                 if (healedCount == 0) {
-                    cout << "  - Нет больных животных для лечения в этом назначении.\n";
+                    cout << "  - РќРµС‚ Р±РѕР»СЊРЅС‹С… Р¶РёРІРѕС‚РЅС‹С… РґР»СЏ Р»РµС‡РµРЅРёСЏ РІ СЌС‚РѕРј РЅР°Р·РЅР°С‡РµРЅРёРё.\n";
                 }
             }
         }
         if (!foundVet) {
-            cout << "Нет ветеринаров с назначенными животными.\n";
+            cout << "РќРµС‚ РІРµС‚РµСЂРёРЅР°СЂРѕРІ СЃ РЅР°Р·РЅР°С‡РµРЅРЅС‹РјРё Р¶РёРІРѕС‚РЅС‹РјРё.\n";
         }
         break;
     }
     case 2: {
-        cout << "\n--- Кормление вольеров кормильцами ---\n";
+        cout << "\n--- РљРѕСЂРјР»РµРЅРёРµ РІРѕР»СЊРµСЂРѕРІ РєРѕСЂРјРёР»СЊС†Р°РјРё ---\n";
         bool foundFeeder = false;
         for (auto& emp : zoo.employees) {
             if (emp.position == Employee::Feeder && !emp.assignedAviaries.empty()) {
                 foundFeeder = true;
-                cout << "Кормилец \"" << emp.name << "\" кормит вольеры:\n";
+                cout << "РљРѕСЂРјРёР»РµС† \"" << emp.name << "\" РєРѕСЂРјРёС‚ РІРѕР»СЊРµСЂС‹:\n";
                 for (Aviary* enc : emp.assignedAviaries) {
                     enc->feedAviary(zoo.food);
                 }
             }
         }
         if (!foundFeeder) {
-            cout << "Нет кормильцев с назначенными вольерами.\n";
+            cout << "РќРµС‚ РєРѕСЂРјРёР»СЊС†РµРІ СЃ РЅР°Р·РЅР°С‡РµРЅРЅС‹РјРё РІРѕР»СЊРµСЂР°РјРё.\n";
         }
         break;
     }
     case 3: {
-        cout << "\n--- Уборка вольеров уборщиками ---\n";
+        cout << "\n--- РЈР±РѕСЂРєР° РІРѕР»СЊРµСЂРѕРІ СѓР±РѕСЂС‰РёРєР°РјРё ---\n";
         bool foundCleaner = false;
         for (auto& emp : zoo.employees) {
             if (emp.position == Employee::Cleaner && !emp.assignedAviaries.empty()) {
                 foundCleaner = true;
-                cout << "Уборщик \"" << emp.name << "\" чистит вольеры:\n";
+                cout << "РЈР±РѕСЂС‰РёРє \"" << emp.name << "\" С‡РёСЃС‚РёС‚ РІРѕР»СЊРµСЂС‹:\n";
                 for (Aviary* enc : emp.assignedAviaries) {
                     enc->cleanAviary();
                 }
             }
         }
         if (!foundCleaner) {
-            cout << "Нет уборщиков с назначенными вольерами.\n";
+            cout << "РќРµС‚ СѓР±РѕСЂС‰РёРєРѕРІ СЃ РЅР°Р·РЅР°С‡РµРЅРЅС‹РјРё РІРѕР»СЊРµСЂР°РјРё.\n";
         }
         break;
     }
@@ -1535,7 +1535,7 @@ void performEmployeeActions(Zoo& zoo) {
     }
 }
 
-// основная функция — запуск симуляции
+// РѕСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ вЂ” Р·Р°РїСѓСЃРє СЃРёРјСѓР»СЏС†РёРё
 int main() {
     srand(time(0));
     system("chcp 1251 > nul");
@@ -1543,54 +1543,54 @@ int main() {
 
     string zooName;
     cout << "------------------------------------------------------------------------------------------------------------------------ \n";
-    cout << "                                                               Памятка\n";
-    cout << "         1) У вас есть 10 дней чтобы поуправлять зоопарко, но если за это время вы потеряете все деньги игра окончится(. \n";
-    cout << "         2) животных надо кормить или они умрут (( также нужно следить за их уровнем счастья или они могут разозлиться и сбежать. \n ";
-    cout << "         3) Хищники могут жить только с хищниками, а травоядные - только с травоядными (разные виды в одном вольере разрешены).\n";
-    cout << "         4) Остерегайтесь тиаравируса! Больные животные заражают других, а если их станет слишком много - начнут умирать. Болезнь также уменьшает популярность.\n";
-    cout << "         5) Назначайте работников для лечения больных животных, кормления и уборки вольеров.\n";
+    cout << "                                                               РџР°РјСЏС‚РєР°\n";
+    cout << "         1) РЈ РІР°СЃ РµСЃС‚СЊ 10 РґРЅРµР№ С‡С‚РѕР±С‹ РїРѕСѓРїСЂР°РІР»СЏС‚СЊ Р·РѕРѕРїР°СЂРєРѕ, РЅРѕ РµСЃР»Рё Р·Р° СЌС‚Рѕ РІСЂРµРјСЏ РІС‹ РїРѕС‚РµСЂСЏРµС‚Рµ РІСЃРµ РґРµРЅСЊРіРё РёРіСЂР° РѕРєРѕРЅС‡РёС‚СЃСЏ(. \n";
+    cout << "         2) Р¶РёРІРѕС‚РЅС‹С… РЅР°РґРѕ РєРѕСЂРјРёС‚СЊ РёР»Рё РѕРЅРё СѓРјСЂСѓС‚ (( С‚Р°РєР¶Рµ РЅСѓР¶РЅРѕ СЃР»РµРґРёС‚СЊ Р·Р° РёС… СѓСЂРѕРІРЅРµРј СЃС‡Р°СЃС‚СЊСЏ РёР»Рё РѕРЅРё РјРѕРіСѓС‚ СЂР°Р·РѕР·Р»РёС‚СЊСЃСЏ Рё СЃР±РµР¶Р°С‚СЊ. \n ";
+    cout << "         3) РҐРёС‰РЅРёРєРё РјРѕРіСѓС‚ Р¶РёС‚СЊ С‚РѕР»СЊРєРѕ СЃ С…РёС‰РЅРёРєР°РјРё, Р° С‚СЂР°РІРѕСЏРґРЅС‹Рµ - С‚РѕР»СЊРєРѕ СЃ С‚СЂР°РІРѕСЏРґРЅС‹РјРё (СЂР°Р·РЅС‹Рµ РІРёРґС‹ РІ РѕРґРЅРѕРј РІРѕР»СЊРµСЂРµ СЂР°Р·СЂРµС€РµРЅС‹).\n";
+    cout << "         4) РћСЃС‚РµСЂРµРіР°Р№С‚РµСЃСЊ С‚РёР°СЂР°РІРёСЂСѓСЃР°! Р‘РѕР»СЊРЅС‹Рµ Р¶РёРІРѕС‚РЅС‹Рµ Р·Р°СЂР°Р¶Р°СЋС‚ РґСЂСѓРіРёС…, Р° РµСЃР»Рё РёС… СЃС‚Р°РЅРµС‚ СЃР»РёС€РєРѕРј РјРЅРѕРіРѕ - РЅР°С‡РЅСѓС‚ СѓРјРёСЂР°С‚СЊ. Р‘РѕР»РµР·РЅСЊ С‚Р°РєР¶Рµ СѓРјРµРЅСЊС€Р°РµС‚ РїРѕРїСѓР»СЏСЂРЅРѕСЃС‚СЊ.\n";
+    cout << "         5) РќР°Р·РЅР°С‡Р°Р№С‚Рµ СЂР°Р±РѕС‚РЅРёРєРѕРІ РґР»СЏ Р»РµС‡РµРЅРёСЏ Р±РѕР»СЊРЅС‹С… Р¶РёРІРѕС‚РЅС‹С…, РєРѕСЂРјР»РµРЅРёСЏ Рё СѓР±РѕСЂРєРё РІРѕР»СЊРµСЂРѕРІ.\n";
     cout << "------------------------------------------------------------------------------------------------------------------------ \n";
-    cout << "Введите название зоопарка: ";
+    cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ Р·РѕРѕРїР°СЂРєР°: ";
     cin.clear();
     cin.sync();
     getline(cin, zooName);
 
-    int initialMoney = getIntegerInput("Введите начальный капитал: ");
+    int initialMoney = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅР°С‡Р°Р»СЊРЅС‹Р№ РєР°РїРёС‚Р°Р»: ");
     while (initialMoney < 0) {
-        cout << "Недопустимое значение. ";
-        initialMoney = getIntegerInput("Введите начальный капитал: ");
+        cout << "РќРµРґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ. ";
+        initialMoney = getIntegerInput("Р’РІРµРґРёС‚Рµ РЅР°С‡Р°Р»СЊРЅС‹Р№ РєР°РїРёС‚Р°Р»: ");
     }
 
     Zoo zoo(zooName, initialMoney);
-    zoo.employees.emplace_back("Ярополк", Employee::Director, 500, 0);
+    zoo.employees.emplace_back("РЇСЂРѕРїРѕР»Рє", Employee::Director, 500, 0);
 
     while (true) {
         cout << "\n\n=== " << zoo.name << " ===\n";
-        cout << "День: " << zoo.day << "\n";
-        cout << "Деньги: " << zoo.money << " монет\n";
-        cout << "Еда: " << zoo.food << " кг\n";
-        cout << "Популярность: " << zoo.popularity << "\n";
-        cout << "Животных: " << zoo.getTotalAnimals() << "\n";
-        cout << "Вольеров: " << zoo.enclosures.size() << "\n";
-        cout << "Работников: " << zoo.employees.size() << "\n";
-        cout << "Посетители сегодня: " << max(0, 2 * zoo.popularity) << "\n";
+        cout << "Р”РµРЅСЊ: " << zoo.day << "\n";
+        cout << "Р”РµРЅСЊРіРё: " << zoo.money << " РјРѕРЅРµС‚\n";
+        cout << "Р•РґР°: " << zoo.food << " РєРі\n";
+        cout << "РџРѕРїСѓР»СЏСЂРЅРѕСЃС‚СЊ: " << zoo.popularity << "\n";
+        cout << "Р–РёРІРѕС‚РЅС‹С…: " << zoo.getTotalAnimals() << "\n";
+        cout << "Р’РѕР»СЊРµСЂРѕРІ: " << zoo.enclosures.size() << "\n";
+        cout << "Р Р°Р±РѕС‚РЅРёРєРѕРІ: " << zoo.employees.size() << "\n";
+        cout << "РџРѕСЃРµС‚РёС‚РµР»Рё СЃРµРіРѕРґРЅСЏ: " << max(0, 2 * zoo.popularity) << "\n";
 
-        cout << "\n[1] Животные\n";
-        cout << "[2] Работники\n";
-        cout << "[3] Вольеры\n";
-        cout << "[4] Ресурсы\n";
-        cout << "[5] Действия работников\n";
-        cout << "[0] Следующий день\n";
+        cout << "\n[1] Р–РёРІРѕС‚РЅС‹Рµ\n";
+        cout << "[2] Р Р°Р±РѕС‚РЅРёРєРё\n";
+        cout << "[3] Р’РѕР»СЊРµСЂС‹\n";
+        cout << "[4] Р РµСЃСѓСЂСЃС‹\n";
+        cout << "[5] Р”РµР№СЃС‚РІРёСЏ СЂР°Р±РѕС‚РЅРёРєРѕРІ\n";
+        cout << "[0] РЎР»РµРґСѓСЋС‰РёР№ РґРµРЅСЊ\n";
 
-        int choice = getIntegerInput("Ваш выбор: ");
+        int choice = getIntegerInput("Р’Р°С€ РІС‹Р±РѕСЂ: ");
         if (choice == 0) {
             zoo.nextDay();
             if (zoo.money < 0) {
-                cout << "\nБАНКРОТСТВО! Вы проиграли.\n";
+                cout << "\nР‘РђРќРљР РћРўРЎРўР’Рћ! Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё.\n";
                 break;
             }
             if (zoo.day > 12) {
-                cout << "\nПоздравляем! Вы успешно управляли зоопарком 10 дней!\n";
+                cout << "\nРџРѕР·РґСЂР°РІР»СЏРµРј! Р’С‹ СѓСЃРїРµС€РЅРѕ СѓРїСЂР°РІР»СЏР»Рё Р·РѕРѕРїР°СЂРєРѕРј 10 РґРЅРµР№!\n";
                 break;
             }
         }
